@@ -2,166 +2,760 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Russel Heinrich Sawyer | Portfolio</title>
+    <link rel="icon" type="image/jpeg" href="profile3.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <noscript><style>#boot{display:none}body.locked{overflow:auto}.rv{opacity:1!important;transform:none!important}</style></noscript>
     <style>
-        :root{--bg:#eef0f6;--ink:#2e2740;--muted:#6b6482;--cream:#fff8ff;--lav:#b9a9f0;--hl:#8b78d8;--serif:"Fraunces",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-        @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15121d;--ink:#f1ecfb;--muted:#aaa2c2;color-scheme:dark}}
-        :root[data-theme="dark"]{--bg:#15121d;--ink:#f1ecfb;--muted:#aaa2c2;color-scheme:dark}
+        :root{--ar:1;--g:#333;color-scheme:dark;--bg:#0a0a0b;--panel:#111113;--panel2:#18181b;--line:#2a2a2f;--ink:#f3efe8;--muted:#a39f97;--accent:#e8b04a;--red:#e5484d;--serif:"Playfair Display",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"Space Mono",ui-monospace,Consolas,monospace}
         *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth;height:100%}
-        body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;min-height:100%}
-        a{color:inherit}
-        .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-        nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:12px;flex-wrap:wrap}
-        nav b{font-family:var(--serif);font-size:1.15rem}
-        nav div{display:flex;gap:18px;font-size:.9rem;font-weight:500}
-        nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--hl)}
-        .fold{display:grid;grid-template-columns:1fr 1.15fr 1fr;border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(70,50,120,.28);color:var(--cream)}
-        .pn{position:relative;padding:44px 34px;display:flex;flex-direction:column;gap:18px}
-        .l{background:#8fa1b3}.r{background:#a99bb9}
-        .c{align-items:center;text-align:center;background:linear-gradient(160deg,#b4c1d6,#dacfbc 42%,#b8c9d0 68%,#c6b6e2);background-size:200% 200%;animation:shift 14s ease-in-out infinite alternate}
-        @keyframes shift{to{background-position:100% 100%}}
-        h2{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,3.4vw,2.5rem);line-height:1.25}
-        .pn p{font-size:.92rem;opacity:.92}
-        .c p{max-width:30ch}
-        .name{font-family:var(--serif);font-weight:800;font-size:clamp(3.2rem,7vw,4.4rem);line-height:1;color:#fff;-webkit-text-stroke:2px #8b78d8;text-shadow:3px 3px 0 #8b78d8,5px 6px 0 rgba(139,120,216,.35);transform:rotate(-4deg);margin-top:8px}
-        .sub{font-size:.7rem;letter-spacing:.24em;font-weight:700;color:#6d5bbf;margin-top:-6px}
-        .badge{position:relative;width:200px;aspect-ratio:1;background:var(--lav);display:grid;place-items:center;filter:drop-shadow(0 8px 14px rgba(90,70,150,.3))}
-        .badge .in{width:78%;aspect-ratio:1;border-radius:50%;border:5px solid #fff;overflow:hidden}
-        .ph{position:relative;overflow:hidden;background:var(--g,linear-gradient(135deg,#6a7fa0,#c9b6e8));display:grid;place-items:center}
-        .ph svg{width:30px;height:30px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.6}
-        .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-        .fr{position:relative;isolation:isolate;border-radius:22px;aspect-ratio:var(--ar,1)}
-        .fr .ph{width:100%;height:100%;border-radius:22px}
-        .fr::after{content:"";position:absolute;inset:11px -11px -11px 11px;border:1.5px solid rgba(255,255,255,.7);border-radius:24px;background:rgba(255,255,255,.08);z-index:-1}
-        .glass{width:100%;background:rgba(255,255,255,.22);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.45);border-radius:22px;padding:18px 20px;display:grid;gap:10px;text-align:left;font-size:.85rem;font-weight:500;color:#3d3358}
-        .glass a{text-decoration:none;display:flex;gap:10px;align-items:center;word-break:break-all}
-        .glass i{width:26px;height:26px;border-radius:50%;border:1.5px solid #3d3358;display:grid;place-items:center;font-style:normal;font-size:.7rem;flex:none}
-        .soc{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-        .soc a{padding:6px 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.8);color:#fff;font-size:.78rem;font-weight:700;text-decoration:none}
-        .soc a:hover{background:#fff;color:#6d5bbf}
-        .sp{position:absolute;width:var(--s,18px);aspect-ratio:1;background:#fff;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:tw 3s ease-in-out infinite;pointer-events:none}
-        @keyframes tw{50%{opacity:.25;transform:scale(.7) rotate(20deg)}}
-        section{padding:70px 0 10px}
-        .eyebrow{font-size:.75rem;letter-spacing:.2em;font-weight:700;color:var(--hl);text-transform:uppercase}
-        section h2{margin:6px 0 10px}
-        section>.wrap>p{color:var(--muted);max-width:52ch}
-        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:34px 26px;margin-top:34px;padding:0 12px 12px 0}
-        .shot{display:block;border:0;background:none;padding:0;text-align:left;color:inherit;font:inherit}
-        .shot .fr::after{border-color:var(--lav);background:none}
-        .shot span{display:block;margin-top:16px;font-family:var(--serif);font-weight:600;font-size:1rem}
-        .shot small{color:var(--muted);font-size:.78rem}
-        .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;list-style:none}
-        .chips li{padding:8px 18px;border-radius:999px;background:linear-gradient(135deg,#b4c1d6,#c6b6e2);color:#2e2740;font-size:.88rem;font-weight:700}
-        footer{text-align:center;color:var(--muted);font-size:.8rem;padding:50px 0 34px}
-        @media(max-width:860px){.fold{grid-template-columns:1fr}.c{order:-1}.pn{padding:34px 26px}}
-        /* Loading screen */
-        #load{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:linear-gradient(160deg,#b4c1d6,#dacfbc 42%,#b8c9d0 68%,#c6b6e2);background-size:200% 200%;animation:shift 6s ease-in-out infinite alternate;transition:opacity .7s,visibility .7s;cursor:pointer;color:#3d3358}
-        #load.off{opacity:0;visibility:hidden}
-        .ld{display:grid;justify-items:center;gap:14px;text-align:center}
-        .ld .name{font-size:clamp(3rem,12vw,5rem);margin:6px 0 0}
-        .spin{width:84px;aspect-ratio:1;background:var(--lav);animation:turn 6s linear infinite;filter:drop-shadow(0 6px 10px rgba(90,70,150,.3))}
-        @keyframes turn{to{transform:rotate(360deg)}}
-        .lb{width:min(280px,70vw);height:10px;border-radius:99px;background:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.85);overflow:hidden}
-        .lb i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#8b78d8,#e3b7d6)}
-        .lt{font-size:.82rem;font-weight:700}
-        .skip{font-size:.7rem;opacity:.7}
-        @media(prefers-reduced-motion:reduce){.c,.sp,#load,.spin{animation:none}html{scroll-behavior:auto}}
+        html{scroll-behavior:smooth;scroll-padding-top:76px}
+        body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6}
+        body.locked{overflow:hidden;height:100%}
+        a{color:var(--accent)}
+        a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+        .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+        svg{display:block}
+        .grain{position:fixed;inset:-50%;z-index:50;pointer-events:none;opacity:.07;animation:grain 1s steps(6) infinite;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+        @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+        @keyframes blink{50%{opacity:.15}}
+        @keyframes fade{from{opacity:0}to{opacity:1}}
+
+        /* Boot: camera viewfinder */
+        #boot{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:#050505;color:var(--ink);font-family:var(--mono);cursor:pointer;transition:opacity .6s .35s}
+        #boot.off{opacity:0;pointer-events:none}
+        .blade{position:absolute;inset:0;background:#050505;z-index:3;pointer-events:none;transition:transform .5s cubic-bezier(.7,0,.2,1)}
+        .blade.t{transform:translateY(-100%);top:0}.blade.b{transform:translateY(100%)}
+        #boot.snap .blade.t,#boot.snap .blade.b{transform:none}
+        #boot.off .blade.t{transform:translateY(-100%)}#boot.off .blade.b{transform:translateY(100%)}
+        .vf{position:relative;width:min(520px,100%);aspect-ratio:4/3;border:1px solid #333;padding:22px;display:grid;place-items:center}
+        .vf i{position:absolute;width:26px;height:26px;border:2px solid var(--ink)}
+        .vf i:nth-child(1){top:8px;left:8px;border-right:0;border-bottom:0}.vf i:nth-child(2){top:8px;right:8px;border-left:0;border-bottom:0}
+        .vf i:nth-child(3){bottom:8px;left:8px;border-right:0;border-top:0}.vf i:nth-child(4){bottom:8px;right:8px;border-left:0;border-top:0}
+        .focus{position:absolute;width:74px;height:74px;left:50%;top:42%;margin:-37px 0 0 -37px;border:2px solid var(--muted);border-radius:4px;animation:hunt 2.4s ease-in-out forwards}
+        .focus.lock{border-color:#4ade80;animation:none;box-shadow:0 0 22px rgba(74,222,128,.5)}
+        @keyframes hunt{0%{transform:translate(-90px,40px) scale(1.5)}40%{transform:translate(70px,-30px) scale(.8)}70%{transform:translate(-25px,15px) scale(1.15)}100%{transform:none}}
+        .boot-box{text-align:center;position:absolute;left:0;right:0;top:50%;transform:translateY(-34%);z-index:2}
+        .boot-title{font-family:var(--serif);font-size:clamp(1.4rem,4.4vw,2rem);font-weight:700;letter-spacing:.04em}
+        .boot-sub{color:var(--muted);font-size:.72rem;letter-spacing:.18em;margin:4px 0 14px}
+        .exif{display:flex;justify-content:center;gap:16px;font-size:.78rem;color:var(--accent);margin-bottom:14px;flex-wrap:wrap}
+        .bar{height:3px;background:#26262b;width:min(300px,80vw);margin:0 auto}
+        .bar i{display:block;height:100%;width:0;background:var(--accent)}
+        .boot-pct{margin-top:8px;font-size:.75rem;color:var(--muted)}
+        .rec{position:absolute;top:18px;left:50px;font-size:.72rem;display:flex;gap:8px;align-items:center;color:var(--muted)}
+        .rec b{width:9px;height:9px;border-radius:50%;background:var(--red);animation:blink 1.1s steps(2) infinite}
+        .boot-key{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-weight:700;font-size:.85rem;letter-spacing:.1em}
+        .boot-key small{display:block;font-weight:400;color:var(--muted);font-size:.68rem;margin-top:2px}
+        body:not(.locked) .page{animation:fade .9s ease both}
+
+        /* Nav */
+        .topbar{position:sticky;top:0;z-index:10;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+        .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
+        .brand{font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+        .brand svg{width:22px;height:22px;stroke:var(--accent)}
+        .menu{list-style:none;display:flex;gap:2px}
+        .menu a{display:block;padding:8px 14px;color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent}
+        .menu a:hover,.menu a.active{color:var(--ink);border-bottom-color:var(--accent)}
+
+        /* Hero */
+        .hero{padding:70px 0 90px}
+        .hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+        .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+        .hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5.6vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+        .hero h1 em{font-style:italic;font-weight:500;color:var(--accent)}
+        .typing{margin-top:16px;font-family:var(--mono);font-size:clamp(1rem,2.2vw,1.3rem);min-height:1.5em}
+        .typing b{color:var(--red);margin-right:6px}
+        .cursor{display:inline-block;width:8px;height:1.05em;background:var(--accent);margin-left:4px;vertical-align:-.18em;animation:blink 1s steps(2) infinite}
+        .tagline{margin-top:18px;color:var(--muted);max-width:48ch;font-size:1.05rem}
+        .follow{display:flex;align-items:center;gap:10px;margin-top:26px}
+        .follow strong{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-weight:400;letter-spacing:.1em;margin-right:4px;text-transform:uppercase}
+        .follow a{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700;transition:.15s}
+        .follow a:hover{background:var(--accent);color:#111;border-color:var(--accent)}
+        .follow svg{width:17px;height:17px;fill:currentColor}
+        .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;font-family:var(--mono);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--accent);transition:transform .15s,background .15s}
+        .btn svg{width:16px;height:16px}
+        .btn.solid{background:var(--accent);color:#111}
+        .btn.line{color:var(--accent)}
+        .btn.line:hover{background:rgba(232,176,74,.1)}
+        .btn:hover{transform:translateY(-2px)}
+        .spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;margin-top:34px;background:var(--line);border:1px solid var(--line);max-width:580px}
+        .spec div{background:var(--panel);padding:12px 16px}
+        .spec small{display:block;font-family:var(--mono);font-size:.66rem;color:var(--accent);letter-spacing:.14em}
+        .spec span{font-size:.9rem;font-weight:600}
+        .photo-side{display:grid;place-items:center;padding:18px 14px}
+        .frame{position:relative;width:min(380px,80vw);aspect-ratio:4/5;padding:14px;background:#f3efe8;box-shadow:0 30px 70px rgba(0,0,0,.6);transform:rotate(2deg);transition:transform .4s}
+        .frame:hover{transform:rotate(0)}
+        .photo{width:100%;height:100%;overflow:hidden;background:#222}
+        .photo img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.95)}
+        .tag{position:absolute;font-family:var(--mono);font-size:.7rem;font-weight:700;padding:4px 10px;background:var(--bg);border:1px solid var(--accent);color:var(--accent)}
+        .t1{top:-12px;left:24px}.t2{top:38%;right:-22px}.t3{bottom:-12px;left:30px}
+
+        /* Sections */
+        section.block{padding:72px 0;border-top:1px solid var(--line)}
+        .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+        .sec-head .num{font-family:var(--mono);color:var(--accent);font-size:.85rem;letter-spacing:.12em}
+        .sec-head h2{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700}
+        .about-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+        .card{background:var(--panel);border:1px solid var(--line);padding:22px 24px}
+        .card.wide{grid-column:1/-1}
+        .card h3{font-family:var(--mono);font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .card h3 span{color:var(--muted);margin-right:8px}
+        .card p{color:var(--muted)}
+        .card.wide p{font-family:var(--serif);font-size:1.2rem;color:var(--ink);line-height:1.7}
+        .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+        .chips li{padding:5px 12px;border:1px solid var(--line);background:var(--panel2);font-size:.86rem}
+        .plain{list-style:none;color:var(--muted)}
+        .plain li::before{content:"◆ ";color:var(--accent);font-size:.7em}
+        .kit{margin-top:22px;border:1px solid var(--line);background:var(--panel)}
+        .kit-title{padding:10px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+        .kit-body{padding:18px 20px 22px}
+        .kit-items{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+        .kit-items li{padding:7px 14px;border:1px solid var(--accent);color:var(--accent);font-family:var(--mono);font-size:.8rem}
+        .cert-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+        .cert{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);overflow:hidden;transition:border-color .2s,transform .2s}
+        .cert:hover{border-color:var(--accent);transform:translateY(-4px)}
+        .cert img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#060607;display:block;border-bottom:1px solid var(--line)}
+        .cert-body{padding:18px 20px 22px;flex:1}
+        .cert-body h3{font-family:var(--serif);font-size:1.05rem;margin-bottom:8px}
+        .cert-body p{color:var(--muted);font-size:.88rem;margin-bottom:14px}
+        .cert-body a{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;text-decoration:none}
+        .cert-body a:hover{text-decoration:underline}
+        .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+        .contact-wrap>p{font-family:var(--serif);font-size:1.5rem;line-height:1.5}
+        .contact-wrap>p em{color:var(--accent)}
+        .contact-list{list-style:none;display:grid;gap:12px}
+        .contact-list li{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);padding:16px 20px}
+        .contact-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--accent);min-width:62px}
+        .contact-list a{color:var(--ink);font-weight:600;text-decoration:none;word-break:break-all}
+        .contact-list a:hover{color:var(--accent)}
+        footer{padding:34px 0;border-top:1px solid var(--line);color:var(--muted);text-align:center;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em}
+        .rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+        .rv.in{opacity:1;transform:none}
+        @media(max-width:820px){
+            .hero .wrap,.contact-wrap{grid-template-columns:1fr}
+            .photo-side{order:-1}
+            .menu a{padding:8px;font-size:.68rem;letter-spacing:.02em}
+            .brand span{display:none}
+            .t2{right:-8px}
+        }
+        @media(prefers-reduced-motion:reduce){
+            html{scroll-behavior:auto}
+            .grain,.focus,.rec b,.cursor{animation:none}
+            .rv{opacity:1;transform:none;transition:none}
+            .btn,.cert,.frame,#boot,.blade{transition:none}
+            body:not(.locked) .page{animation:none}
+        }
+        .sec-head p{color:var(--muted);font-size:.95rem;margin-left:auto;max-width:40ch}
+        .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+        .filters button{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--muted);border:1px solid var(--line);padding:8px 16px;cursor:pointer;transition:.15s}
+        .filters button:hover{color:var(--ink);border-color:var(--muted)}
+        .filters button.on{background:var(--ink);color:#111;border-color:var(--ink)}
+        .filters button:focus-visible,.shot:focus-visible,.lb-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+        .gallery{column-count:3;column-gap:16px}
+        .shot{position:relative;display:block;width:100%;margin:0 0 16px;break-inside:avoid;border:0;padding:0;cursor:zoom-in;overflow:hidden;background:var(--panel2);aspect-ratio:var(--ar);text-align:left;color:inherit}
+        .shot .ph{position:absolute;inset:0;background:var(--g);display:grid;place-items:center;transition:transform .6s}
+        .shot .ph svg{width:34px;height:34px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.5}
+        .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+        .shot:hover img,.shot:hover .ph{transform:scale(1.06)}
+        .shot .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.78));opacity:0;transform:translateY(8px);transition:.3s}
+        .shot:hover .cap,.shot:focus-visible .cap{opacity:1;transform:none}
+        .cap b{display:block;font-family:var(--serif);font-size:1.05rem}
+        .cap span{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.08em}
+        .shot.hide{display:none}
+        .play{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.8);pointer-events:none}
+        .play::after{content:"";position:absolute;left:21px;top:15px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff}
+        .lb-img video{max-width:100%;max-height:calc(100vh - 150px);background:#000;display:block}
+        .lb-img iframe{width:min(90vw,960px);aspect-ratio:16/9;max-height:calc(100vh - 150px);border:0;background:#000;display:block}
+        #lb{position:fixed;inset:0;z-index:90;background:rgba(4,4,5,.96);display:none;grid-template-rows:1fr auto;padding:20px}
+        #lb.open{display:grid;animation:fade .25s ease}
+        .lb-stage{position:relative;display:grid;place-items:center;min-height:0}
+        .lb-img{max-width:100%;max-height:100%;display:grid;place-items:center}
+        .lb-img img{max-width:100%;max-height:calc(100vh - 150px);object-fit:contain;display:block}
+        .lb-img .ph{width:min(80vw,760px);aspect-ratio:var(--ar);max-height:calc(100vh - 150px);background:var(--g);display:grid;place-items:center}
+        .lb-img .ph svg{width:48px;height:48px;stroke:rgba(255,255,255,.65);fill:none;stroke-width:1.4}
+        .lb-btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
+        .lb-btn:hover{background:var(--accent);color:#111}
+        .lb-prev{left:4px}.lb-next{right:4px}.lb-close{top:0;right:0}
+        .lb-info{text-align:center;padding-top:14px}
+        .lb-info h3{font-family:var(--serif);font-size:1.3rem}
+        .lb-info p{font-family:var(--mono);font-size:.76rem;color:var(--accent);letter-spacing:.08em;margin-top:4px}
+        @media(max-width:900px){.gallery{column-count:2}}
+        @media(max-width:820px){.sec-head p{margin-left:0}}
+        @media(max-width:520px){.gallery{column-count:1}}
+        @media(prefers-reduced-motion:reduce){.shot img,.shot .ph,.shot .cap{transition:none}}
+
+        /* Admin */
+        [hidden]{display:none!important}
+        .adm-link{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;margin-left:12px;opacity:.55}
+        .adm-link:hover{opacity:1;color:var(--accent)}
+        #adm{position:fixed;inset:0;z-index:95;background:rgba(4,4,5,.9);display:none;place-items:center;padding:20px}
+        #adm.open{display:grid}
+        .adm-box{width:min(440px,100%);background:var(--panel);border:1px solid var(--line);padding:26px;display:grid;gap:12px}
+        .adm-box h3{font-family:var(--serif);font-size:1.4rem}
+        .adm-box p{color:var(--muted);font-size:.85rem}
+        .adm-box input,.adm-box select{width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font:inherit}
+        .adm-box button{padding:11px 18px;border:1.5px solid var(--accent);background:var(--accent);color:#111;font-family:var(--mono);font-weight:700;cursor:pointer}
+        .adm-box button.line{background:none;color:var(--accent)}
+        .adm-sec{display:grid;gap:12px}
     </style>
 </head>
-<body>
-<noscript><style>#load{display:none}</style></noscript>
-<div id="load" role="status" aria-label="Loading portfolio">
-    <span class="sp" style="--s:22px;left:18%;top:24%"></span><span class="sp" style="--s:16px;right:20%;top:68%;animation-delay:1s"></span>
-    <div class="ld">
-        <div class="spin" id="spin"></div>
-        <div class="name">Russel</div>
-        <div class="sub">HEINRICH SAWYER · PHOTOGRAPHY</div>
-        <div class="lb" aria-hidden="true"><i id="lbar"></i></div>
-        <div class="lt"><span id="lpct">0%</span> <span id="ltxt">developing film…</span></div>
-        <div class="skip">(tap to skip)</div>
+<body class="locked">
+<div class="grain" aria-hidden="true"></div>
+
+<div id="boot" role="dialog" aria-label="Camera start screen. Press any key to continue" tabindex="-1">
+    <span class="blade t"></span><span class="blade b"></span>
+    <div class="rec" aria-hidden="true"><b></b> REC &middot; STANDBY</div>
+    <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="focus" id="focus"></span></div>
+    <div class="boot-box">
+        <div class="boot-title">Russel Heinrich Sawyer</div>
+        <p class="boot-sub">PORTFOLIO v1.0</p>
+        <div class="exif" aria-hidden="true"><span>ISO 100</span><span>f/1.8</span><span>1/250</span><span>35mm</span></div>
+        <div class="bar" aria-hidden="true"><i id="fill"></i></div>
+        <div class="boot-pct"><span id="pct">0%</span> <span id="stepText">metering light...</span></div>
     </div>
+    <p class="boot-key" id="key" hidden>PRESS ANY KEY TO SNAP<small>(or tap the screen)</small></p>
 </div>
-<div class="wrap">
-    <nav><b>Russel Heinrich Sawyer</b><div><a href="#home">Home</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
 
-    <div class="fold" id="home">
-        <div class="pn l">
-            <span class="sp" style="--s:16px;right:22px;top:24px"></span>
-            <h2>Getting to Know Me</h2>
-            <p>I’m a photographer who enjoys capturing real moments and the simple details that often go unnoticed. I love photos that feel natural, honest, and timeless.</p>
-            <p>For me, photography is about telling stories in a quiet and genuine way while making people feel comfortable in front of the camera.</p>
-            <div class="fr" style="--ar:1;margin:6px 11px 11px 0"><div class="ph" style="--g:linear-gradient(135deg,#1c1b3a,#6b7fb5)"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/photo1.jpg" alt="Portrait by Russel" onerror="this.remove()"></div></div>
-        </div>
-
-        <div class="pn c">
-            <span class="sp" style="--s:22px;left:18px;top:30%"></span><span class="sp" style="--s:14px;right:26px;top:46%;animation-delay:1s"></span>
-            <p>If you’re looking for portraits that feel real and unforced, maybe this studio is for you. Don’t hesitate to reach out.</p>
-            <h1 class="name">Russel</h1>
-            <div class="sub">HEINRICH SAWYER · PHOTOGRAPHY</div>
-            <div class="badge" id="badge"><div class="in"><div class="ph" style="width:100%;height:100%;--g:linear-gradient(135deg,#7b6fc9,#e3b7d6)"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c1-5 15-5 16 0"/></svg><img src="profile.jpg" alt="Photo of Russel Heinrich Sawyer" onerror="this.remove()"></div></div></div>
-            <div class="glass" id="contact">
-                <a href="tel:+639510787205"><i>☎</i>0951 078 7205</a>
-                <a href="#about"><i>⌖</i>Pasay</a>
-                <a href="https://www.instagram.com/russ.heinrich/" target="_blank" rel="noopener"><i>@</i>russ.heinrich</a>
-            </div>
-        </div>
-
-        <div class="pn r">
-            <span class="sp" style="--s:20px;right:24px;top:20px"></span>
-            <div class="fr" style="--ar:1;margin:0 11px 11px 0"><div class="ph" style="--g:linear-gradient(160deg,#c78fa8,#e6b88a 55%,#8a7fc0)"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/photo2.jpg" alt="Portrait by Russel" onerror="this.remove()"></div></div>
-            <h2>Let’s Live with Curiosity</h2>
-            <p>Finding inspiration can be a deeply personal and sometimes unpredictable process. Slowing down, noticing the small things, and taking breaks lets ideas flow naturally.</p>
-            <div class="soc"><a href="https://www.instagram.com/russ.heinrich/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@haynrich123" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/russel.sawyer.5" target="_blank" rel="noopener">Facebook</a></div>
+<div class="page">
+    <div class="topbar">
+        <div class="wrap">
+            <a class="brand" href="#home">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg>
+                <span>Russel Heinrich Sawyer</span>
+            </a>
+            <ul class="menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#achievements">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </div>
 
-    <section id="gallery">
-        <div class="wrap" style="padding:0">
-            <span class="eyebrow">Gallery</span>
-            <h2>Moments I’ve Caught</h2>
-            <p>A few frames from recent shoots. Swap in your own files from the photos folder.</p>
-            <div class="grid" id="grid"></div>
-        </div>
-    </section>
+    <main>
+        <section class="hero" id="home">
+            <div class="wrap">
+                <div>
+                    <p class="eyebrow">PROFESSIONAL PHOTOGRAPHER</p>
+                    <h1>Hi, I'm <em>Russel Heinrich</em> Sawyer</h1>
+                    <div class="typing" aria-live="off"><b>&#9679;</b><span id="typed"></span><span class="cursor" aria-hidden="true"></span></div>
+                    <p class="tagline">Crafting dreams into reality, one stroke at a time.</p>
 
-    <section id="about">
-        <div class="wrap" style="padding:0">
-            <span class="eyebrow">About</span>
-            <h2>What I Love Doing</h2>
-            <ul class="chips"><li>Photography</li><li>Singing</li><li>Dancing</li><li>Sketching</li><li>Problem Solving</li><li>Quick Learning</li></ul>
+                    <div class="follow">
+                        <strong>Follow</strong>
+                        <a href="https://www.instagram.com/russ.heinrich/?__pwa=1" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@haynrich123" aria-label="TikTok" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/russilog_/?__pwa=1" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/russel.sawyer.5" aria-label="Facebook" target="_blank" rel="noopener">f</a>
+                    </div>
+
+                    <div class="actions">
+                        <a class="btn solid" href="#gallery">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            Gallery
+                        </a>
+                        <a class="btn line" href="#contact">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+                            Contact Me
+                        </a>
+                    </div>
+
+                    <div class="spec">
+                        <div><small>OCCUPATION</small><span>Affiliate</span></div>
+                        <div><small>PROGRAM</small><span>Political Science</span></div>
+                    </div>
+                </div>
+
+                <div class="photo-side">
+                    <figure class="frame">
+                        <div class="photo"><img src="profile.jpg" alt="Photo of Russel Heinrich Sawyer"></div>
+                        <span class="tag t1" aria-hidden="true">HTML</span>
+                        <span class="tag t2" aria-hidden="true">CSS</span>
+                        <span class="tag t3" aria-hidden="true">JS</span>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="block" id="gallery">
+            <div class="wrap">
+                <div class="sec-head rv">
+                    <span class="num">01</span>
+                    <h2>Gallery</h2>
+                    <p>Click any frame to view it large. Use the arrow keys to browse.</p>
+                </div>
+                <div class="filters rv" id="filters" role="group" aria-label="Filter gallery by category"></div>
+                <div class="gallery" id="grid"></div>
+            </div>
+        </section>
+
+        <section class="block" id="about">
+            <div class="wrap">
+                <div class="sec-head rv"><span class="num">02</span><h2>About me</h2></div>
+                <div class="about-grid rv">
+                    <div class="card wide">
+                        <h3><span>01</span>Bio</h3>
+                        <p>I’m Russel Heinrich Sawyer, a creative individual with a passion for exploring different forms of art and self-expression.
+
+                            Photography is one of the ways I see and interpret the world, but my creativity doesn’t end behind the camera. I’m also drawn to dance, music, painting, makeup, and other forms of visual expression.
+
+                            I’m naturally curious about things I haven’t tried, ideas I haven’t explored, and versions of myself I have yet to discover. I believe creativity is not limited to one medium or one identity. It’s something that continues to evolve as we experience life, learn, and grow.
+
+                            This space is a reflection of who I am, what I create, what inspires me, and the things I’m still discovering about myself.
+
+                            Forever curious, forever learning. </p>
+                    </div>
+                    <div class="card">
+                        <h3><span>02</span>Location</h3>
+                        <p>Pasay</p>
+                    </div>
+                    <div class="card">
+                        <h3><span>03</span>Hobbies</h3>
+                        <ul class="chips">
+                            <li>Dancing</li>
+                            <li>Photography</li>
+                            <li>Singing</li>
+                            <li>Sketching</li>
+                            <li>Painting</li>
+                            <li>Drawing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="kit rv">
+                    <div class="kit-title">Skills in my toolkit</div>
+                    <div class="kit-body">
+                        <ul class="kit-items">
+                            <li>Problem Solving</li>
+                            <li>Time Management</li>
+                            <li>Quick Learning</li>
+                            <li>Strong Communication</li>
+                            <li>Team Collaboration</li>
+                            <li>Analytical Thinking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="block" id="achievements">
+            <div class="wrap">
+                <div class="sec-head rv"><span class="num">03</span><h2>Achievements</h2></div>
+
+                <div class="cert-grid rv">
+
+                    <article class="cert">
+                        <a href="certificate9.jpg" target="_blank" rel="noopener">
+                            <img src="certificate9.jpg" alt="Certificate: Graduation Day">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Graduation Day</h3>
+                            <a href="certificate9.jpg" target="_blank" rel="noopener">View</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate7.jpg" target="_blank" rel="noopener">
+                            <img src="certificate7.jpg" alt="Certificate: Best Male Performing Arts of the Year">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Best Male Performing Arts of the Year</h3>
+                            <a href="certificate7.jpg" target="_blank" rel="noopener">View</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate8.jpg" target="_blank" rel="noopener">
+                            <img src="certificate8.jpg" alt="Certificate: Poster Making Contest, 3rd Place">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Poster Making Contest: 3rd Place</h3>
+                            <p>Science for the People: Liberating Education through Innovation<br>October 02, 2018</p>
+                            <a href="certificate8.jpg" target="_blank" rel="noopener">View full certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate10.jpg" target="_blank" rel="noopener">
+                            <img src="certificate10.jpg" alt="Certificate: Poster Making Challenge">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Poster Making Challenge</h3>
+                            <p>SRH Kalikasan</p>
+                            <a href="certificate10.jpg" target="_blank" rel="noopener">View full certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate11.jpg" target="_blank" rel="noopener">
+                            <img src="certificate11.jpg" alt="Certificate: add the title here">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Certificate</h3>
+                            <a href="certificate11.jpg" target="_blank" rel="noopener">View</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate12.jpg" target="_blank" rel="noopener">
+                            <img src="certificate12.jpg" alt="Certificate: Second Place in Poster Making Contest">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Second Place in Poster Making Contest</h3>
+                            <p>3rd Fire Square Competition</p>
+                            <a href="certificate12.jpg" target="_blank" rel="noopener">View full certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="cert">
+                        <a href="certificate13.jpg" target="_blank" rel="noopener">
+                            <img src="certificate13.jpg" alt="Certificate: add the title here">
+                        </a>
+                        <div class="cert-body">
+                            <h3>Awards</h3>
+                            <a href="certificate13.jpg" target="_blank" rel="noopener">View full certificate</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="block" id="contact">
+            <div class="wrap">
+                <div class="sec-head rv"><span class="num">04</span><h2>Contact</h2></div>
+                <div class="contact-wrap rv">
+                    <p>Have a question? Send me a message in my instagram account or call me and <em>I'll reply as soon as I can.</em></p>
+                    <ul class="contact-list">
+                        <li><span class="contact-label">INSTAGRAM</span><a href="https://www.instagram.com/russ.heinrich/?__pwa=1">russ.heinrich</a></li>
+                        <li><span class="contact-label">PHONE</span><a href="tel:+639510787205">09510787205 </a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>© 2026 Russel Heinrich Sawyer // built with HTML, CSS &amp; JS <button type="button" class="adm-link" id="admOpen">Admin</button></footer>
+</div>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lb-stage">
+        <button class="lb-btn lb-close" id="lbClose" aria-label="Close viewer">&times;</button>
+        <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+        <div class="lb-img" id="lbImg"></div>
+        <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    </div>
+    <div class="lb-info"><h3 id="lbTitle"></h3><p id="lbMeta"></p></div>
+</div>
+
+<div id="adm" role="dialog" aria-modal="true" aria-label="Admin">
+    <div class="adm-box">
+        <h3>Admin</h3>
+        <div id="admLogin" class="adm-sec">
+            <p>Paste your GitHub access token to add photos to the gallery.</p>
+            <input type="password" id="admToken" placeholder="GitHub token" aria-label="GitHub token" autocomplete="off">
+            <button type="button" id="admIn">Log in</button>
         </div>
-    </section>
-    <footer>© 2026 Russel Heinrich Sawyer</footer>
+        <div id="admForm" class="adm-sec" hidden>
+            <input type="file" id="admFile" accept="image/*" aria-label="Photo">
+            <input type="text" id="admTitle" placeholder="Title" aria-label="Title">
+            <select id="admCat" aria-label="Category"><option>Photography</option><option>Arts</option><option>Singing</option><option>Dancing</option></select>
+            <input type="text" id="admMeta" placeholder="Date, e.g. October 2026" aria-label="Date">
+            <button type="button" id="admUp">Upload photo</button>
+            <button type="button" class="line" id="admOut">Log out</button>
+        </div>
+        <p id="admMsg" role="status"></p>
+        <button type="button" class="line" id="admClose">Close</button>
+    </div>
 </div>
 
 <script>
-    (function(){
-        var b=document.getElementById("badge"),pts=[],i,a,r;
-        for(i=0;i<360;i+=3){a=i*Math.PI/180;r=50-4.5*(1-Math.abs(Math.cos(5*a)));pts.push((50+r*Math.cos(a)).toFixed(2)+"% "+(50+r*Math.sin(a)).toFixed(2)+"%")}
-        b.style.clipPath="polygon("+pts.join(",")+")";
-        document.getElementById("spin").style.clipPath=b.style.clipPath;
-        // Loading screen
-        var ld=document.getElementById("load"),bar=document.getElementById("lbar"),pc=document.getElementById("lpct"),tx=document.getElementById("ltxt"),v=0,done=false,t;
-        var msg=["developing film…","adjusting light…","framing shots…","almost ready…"];
-        document.body.style.overflow="hidden";
-        function go(){if(done)return;done=true;clearInterval(t);bar.style.width="100%";pc.textContent="100%";ld.classList.add("off");document.body.style.overflow="";setTimeout(function(){ld.remove()},800)}
-        t=setInterval(function(){v=Math.min(100,v+Math.random()*3+1);bar.style.width=v+"%";pc.textContent=Math.floor(v)+"%";tx.textContent=msg[Math.min(3,Math.floor(v/25))];if(v>=100){clearInterval(t);setTimeout(go,300)}},70);
-        ld.addEventListener("click",go);
-        if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)go();
-        var P=[["photo1","Charlie Fleming","Nov 2025",.75,"#f6d365,#fda085"],["photo2","Ashley Sarmiento","May 2026",.8,"#a18cd1,#fbc2eb"],["photo5","Marco Masa","Feb 2026",.75,"#2c3e50,#4ca1af"],["photo7","Alex Diaz","Jul 2026",.8,"#355c7d,#c06c84"],["photo11","Gel Jimenez","Dec 2025",.8,"#7f7fd5,#86a8e7"],["photo12","Sheena Andrada","Mar 2025",.8,"#c471ed,#f7797d"],["photo15","Kenard Marquez","Feb 2026",.8,"#5f7a9a,#c9b6e8"],["photo10","Franzcheska Cesas","Feb 2026",.8,"#e6b88a,#8a7fc0"]];
-        var g=document.getElementById("grid");
-        P.forEach(function(p){
-            var d=document.createElement("a");d.className="shot";d.href="photos/"+p[0]+".jpg";d.target="_blank";d.rel="noopener";
-            d.innerHTML='<div class="fr" style="--ar:'+p[3]+'"><div class="ph" style="--g:linear-gradient(135deg,'+p[4]+')"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/'+p[0]+'.jpg" alt="'+p[1]+'" loading="lazy"></div></div><span>'+p[1]+'</span><small>'+p[2]+'</small>';
-            d.querySelector("img").onerror=function(){this.remove()};
-            g.appendChild(d);
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Typing headline
+    function startTyping() {
+        var roles = ["Handsome", "Photographer", "Singer", "Dancer", "Tattoo Artist", "Concept Artist"];
+        var el = document.getElementById("typed");
+        if (reduce) { el.textContent = roles[0]; return; }
+        var r = 0, i = 0, deleting = false;
+        (function tick() {
+            var word = roles[r];
+            el.textContent = word.slice(0, i);
+            if (!deleting && i < word.length) { i++; setTimeout(tick, 90); }
+            else if (!deleting) { deleting = true; setTimeout(tick, 1400); }
+            else if (i > 0) { i--; setTimeout(tick, 45); }
+            else { deleting = false; r = (r + 1) % roles.length; setTimeout(tick, 300); }
+        })();
+    }
+
+    // Boot screen
+    var boot = document.getElementById("boot"), fill = document.getElementById("fill"),
+        pctEl = document.getElementById("pct"), stepEl = document.getElementById("stepText"),
+        keyEl = document.getElementById("key"), focusEl = document.getElementById("focus");
+    var steps = ["metering light...", "setting aperture...", "focusing...", "loading gallery...", "ready"];
+    var p = 0, ready = false, entered = false, timer;
+
+    function setP(v) {
+        p = v;
+        fill.style.width = v + "%";
+        pctEl.textContent = Math.floor(v) + "%";
+        stepEl.textContent = steps[Math.min(steps.length - 1, Math.floor(v / 100 * steps.length))];
+    }
+    function finish() {
+        if (ready) return;
+        clearInterval(timer);
+        setP(100);
+        ready = true;
+        focusEl.classList.add("lock");
+        keyEl.hidden = false;
+    }
+    function enter() {
+        if (entered) return;
+        entered = true;
+        document.removeEventListener("keydown", onInput);
+        boot.classList.add("snap");
+        setTimeout(function () {
+            document.body.classList.remove("locked");
+            window.scrollTo(0, 0);
+            boot.classList.remove("snap");
+            boot.classList.add("off");
+            startTyping();
+            setTimeout(function () { boot.remove(); }, 1100);
+        }, reduce ? 0 : 520);
+    }
+    function onInput(e) {
+        if (e.type === "keydown" && ["Shift", "Control", "Alt", "Meta", "Tab"].indexOf(e.key) > -1) return;
+        if (ready) enter(); else finish();
+    }
+    document.addEventListener("keydown", onInput);
+    boot.addEventListener("pointerdown", onInput);
+    boot.focus();
+    if (reduce) { finish(); }
+    else { timer = setInterval(function () { setP(Math.min(100, p + Math.random() * 2.2 + 0.8)); if (p >= 100) finish(); }, 60); }
+
+    // Menu highlight
+    var links = document.querySelectorAll(".menu a");
+    var sections = [].map.call(links, function (a) { return document.querySelector(a.getAttribute("href")); });
+    window.addEventListener("scroll", function () {
+        var y = window.scrollY + 130, current = 0;
+        sections.forEach(function (s, idx) { if (s && s.offsetTop <= y) current = idx; });
+        links.forEach(function (a, idx) { a.classList.toggle("active", idx === current); });
+    });
+
+    // Scroll reveal
+    var rvEls = document.querySelectorAll(".rv");
+    if ("IntersectionObserver" in window && !reduce) {
+        var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        [].forEach.call(rvEls, function (el) { io.observe(el); });
+    } else { [].forEach.call(rvEls, function (el) { el.classList.add("in"); }); }
+
+    // ===== Gallery =====
+    /* ADD YOUR OWN WORK HERE.
+       1. Make a folder named "photos" next to index.html and put your images in it.
+       2. Change src, title, cat (Photography, Singing, Dancing or Arts) and meta (date or note).
+       3. ar = width divided by height (1.5 = wide, 1 = square, 0.8 = tall).
+       If a file is missing, a colored placeholder is shown instead. */
+    var PHOTOS = [
+        { src: "photos/photo1.jpg", title: "Charlie Fleming", cat: "Photography", meta: "November 2025", ar: 0.75,  g: "linear-gradient(135deg,#f6d365,#fda085)" },
+        { src: "photos/photo2.jpg", title: "Ashley Sarmiento",     cat: "Photography",     meta: "May 2026", ar: 0.8,  g: "linear-gradient(135deg,#a18cd1,#fbc2eb)" },
+        { src: "photos/photo5.jpg", title: "Marco Masa", cat: "Photography", meta: "February 2026", ar: 0.75, g: "linear-gradient(135deg,#2c3e50,#4ca1af)" },
+        { src: "photos/photo7.jpg", title: "Alex Diaz",     cat: "Photography",     meta: "July 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo9.jpg", title: "Emilia Asiana Doesnt",     cat: "Photography",     meta: "October 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo10.jpg", title: "Franzcheska Cesas",     cat: "Photography",     meta: "February 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo11.jpg", title: "Gel Jimenez",     cat: "Photography",     meta: "December 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo12.jpg", title: "Sheena Andrada",     cat: "Photography",     meta: "March 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo13.jpg", title: "Sheena Andrada",     cat: "Photography",     meta: "May 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo14.jpg", title: "Marco Aurelio Avile Leon",     cat: "Photography",     meta: "March 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo15.jpg", title: "Kenard Marquez",     cat: "Photography",     meta: "February 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo16.jpg", title: "Photo",     cat: "Photography",     meta: "February 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo17.jpg", title: "Sofia Trazona",     cat: "Photography",     meta: "May 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo18.jpg", title: "Photo",     cat: "Photography",     meta: "February 2026", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo19.jpg", title: "Loue Slao",     cat: "Photography",     meta: "September 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo20.jpg", title: "Sidney Flores",     cat: "Photography",     meta: "June 2025", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo28.jpg", title: "Beauty Makeup",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo30.jpg", title: "Fruit Carving",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo21.jpg", title: "Scribble Art",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo22.jpg", title: "Costume Making",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo23.jpg", title: "Special Effect Makeup",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo31.jpg", title: "Special Effect Makeup",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo24.jpg", title: "Still Life Drawing",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo25.jpg", title: "Realistic Portrait",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo26.jpg", title: "Tattoo",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo29.jpg", title: "Tattoo",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo27.jpg", title: "Painting",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo32.jpg", title: "Granger Sketch",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo34.jpg", title: "Poster Making",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo35.jpg", title: "Painting",     cat: "Arts",     meta: "n.d", ar: 0.8,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { src: "photos/photo36.jpg", title: "Painting",     cat: "Arts",     meta: "n.d", ar: 2.0,  g: "linear-gradient(135deg,#355c7d,#c06c84)" },
+        { type: "video", src: "photos/bts1.mp4", poster: "photos/bts1.jpg", title: "BTS Anton Vinzon", cat: "Photography", meta: "February 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/bts2.mp4", poster: "photos/bts2.jpg", title: "BTS Marco Masa", cat: "Photography", meta: "December 2025", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/bts3.mp4", poster: "photos/bts3.jpg", title: "BTS Ashley Sarmiento", cat: "Photography", meta: "May 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/singing2.mp4", poster: "photos/singing2.jpg", title: "Passenger Seat Cover", cat: "Singing", meta: "September 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/dancing1.mp4", poster: "photos/dancing1.jpg", title: "Stickwitu Dance Choreo", cat: "Dancing", meta: "July 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/dancing2.mp4", poster: "photos/dancing2.jpg", title: "Dance Choreo", cat: "Dancing", meta: "September 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" },
+        { type: "video", src: "photos/dancing3.mp4", poster: "photos/dancing3.jpg", title: "Rich Man Dance Choreo", cat: "Dancing", meta: "June 2026", ar: 0.75, g: "linear-gradient(135deg,#e5484d,#ff9a8b)" }
+    ];
+    var ICONS = {
+        Photography: '<path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/>',
+        Singing: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M8 21h8"/>',
+        Dancing: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+        Arts: '<path d="M12 3a9 9 0 100 18c1.1 0 1.8-.8 1.8-1.7 0-1-.8-1.5-.8-2.4 0-.9.7-1.6 1.7-1.6H17a4 4 0 004-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/>'
+    };
+    function iconSvg(c) { return '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[c] || ICONS.Photography) + '</svg>'; }
+
+    var grid = document.getElementById("grid"), filtersEl = document.getElementById("filters");
+    ["All", "Photography", "Singing", "Dancing", "Arts"].forEach(function (c, i) {
+        var b = document.createElement("button");
+        b.type = "button"; b.textContent = c; if (i === 0) b.className = "on";
+        b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+        b.addEventListener("click", function () {
+            [].forEach.call(filtersEl.children, function (x) { x.className = ""; x.setAttribute("aria-pressed", "false"); });
+            b.className = "on"; b.setAttribute("aria-pressed", "true");
+            [].forEach.call(grid.children, function (s) { s.classList.toggle("hide", c !== "All" && s.dataset.cat !== c); });
         });
-    })();
+        filtersEl.appendChild(b);
+    });
+    function thumbSrc(ph) {
+        if (ph.type === "youtube") return "https://img.youtube.com/vi/" + ph.id + "/hqdefault.jpg";
+        if (ph.type === "video") return ph.poster || "";
+        return ph.src;
+    }
+    function addShot(ph, i) {
+        var s = document.createElement("button");
+        s.type = "button"; s.className = "shot rv in"; s.dataset.cat = ph.cat; s.dataset.i = i;
+        s.style.setProperty("--ar", ph.ar); s.style.setProperty("--g", ph.g);
+        s.setAttribute("aria-label", "Open " + ph.title);
+        var t = thumbSrc(ph);
+        s.innerHTML = '<span class="ph">' + iconSvg(ph.cat) + '</span>' +
+            (t ? '<img src="' + t + '" alt="' + ph.title + '" loading="lazy">' : '') +
+            (ph.type ? '<span class="play" aria-hidden="true"></span>' : '') +
+            '<span class="cap"><b>' + ph.title + '</b><span>' + ph.cat.toUpperCase() + ' &middot; ' + ph.meta + '</span></span>';
+        var im = s.querySelector("img");
+        if (im) im.addEventListener("error", function () { this.style.display = "none"; });
+        s.addEventListener("click", function () { openLb(i); });
+        grid.appendChild(s);
+    }
+    PHOTOS.forEach(function (ph, i) { addShot(ph, i); });
+
+    // Photos added by the admin are listed in photos/gallery.json
+    fetch("photos/gallery.json?v=" + Date.now())
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (list) { list.forEach(function (ph) { PHOTOS.push(ph); addShot(ph, PHOTOS.length - 1); }); })
+        .catch(function () {});
+
+    // Lightbox
+    var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"),
+        lbTitle = document.getElementById("lbTitle"), lbMeta = document.getElementById("lbMeta"), cur = 0, lastFocus = null;
+    function visibleIdx() {
+        var out = [];
+        [].forEach.call(grid.children, function (s) { if (!s.classList.contains("hide")) out.push(+s.dataset.i); });
+        return out;
+    }
+    function showLb(i) {
+        cur = i; var ph = PHOTOS[i];
+        lbImg.innerHTML = "";
+        if (ph.type === "video") {
+            var v = document.createElement("video");
+            v.src = ph.src; v.controls = true; v.autoplay = true; v.playsInline = true;
+            if (ph.poster) v.poster = ph.poster;
+            lbImg.appendChild(v);
+        } else if (ph.type === "youtube") {
+            var f = document.createElement("iframe");
+            f.src = "https://www.youtube.com/embed/" + ph.id + "?autoplay=1&rel=0";
+            f.title = ph.title; f.allow = "autoplay; encrypted-media; picture-in-picture"; f.allowFullscreen = true;
+            lbImg.appendChild(f);
+        } else {
+            var box = document.createElement("div");
+            box.className = "ph"; box.style.setProperty("--ar", ph.ar); box.style.setProperty("--g", ph.g); box.innerHTML = iconSvg(ph.cat);
+            var im = new Image(); im.alt = ph.title;
+            im.onload = function () { if (cur === i) { lbImg.innerHTML = ""; lbImg.appendChild(im); } };
+            im.src = ph.src;
+            lbImg.appendChild(box);
+        }
+        lbTitle.textContent = ph.title;
+        lbMeta.textContent = ph.cat.toUpperCase() + "  ·  " + ph.meta;
+    }
+    function openLb(i) { lastFocus = document.activeElement; lb.classList.add("open"); document.body.style.overflow = "hidden"; showLb(i); document.getElementById("lbClose").focus(); }
+    function closeLb() { lb.classList.remove("open"); lbImg.innerHTML = ""; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+    function moveLb(d) { var v = visibleIdx(), k = v.indexOf(cur); showLb(v[(k + d + v.length) % v.length]); }
+    document.getElementById("lbClose").addEventListener("click", closeLb);
+    document.getElementById("lbPrev").addEventListener("click", function () { moveLb(-1); });
+    document.getElementById("lbNext").addEventListener("click", function () { moveLb(1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lb-stage")) closeLb(); });
+    document.addEventListener("keydown", function (e) {
+        if (!lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLb();
+        else if (e.key === "ArrowLeft") moveLb(-1);
+        else if (e.key === "ArrowRight") moveLb(1);
+    });
+
+    // ===== Admin (GitHub login) =====
+    var GH = { owner: "nicolai241", repo: "nicolai241.github.io", branch: "master" };
+    var token = sessionStorage.getItem("ghtoken") || "";
+    var adm = document.getElementById("adm"), admMsg = document.getElementById("admMsg");
+    function say(t, bad) { admMsg.textContent = t; admMsg.style.color = bad ? "var(--red)" : "var(--accent)"; }
+    function show(on) { document.getElementById("admLogin").hidden = on; document.getElementById("admForm").hidden = !on; }
+    function api(path, method, body) {
+        return fetch("https://api.github.com/repos/" + GH.owner + "/" + GH.repo + path, {
+            method: method || "GET",
+            headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+            body: body ? JSON.stringify(body) : undefined
+        });
+    }
+    document.getElementById("admOpen").addEventListener("click", function () { adm.classList.add("open"); show(!!token); });
+    document.getElementById("admClose").addEventListener("click", function () { adm.classList.remove("open"); say(""); });
+    document.getElementById("admOut").addEventListener("click", function () { token = ""; sessionStorage.removeItem("ghtoken"); show(false); say(""); });
+    document.getElementById("admIn").addEventListener("click", function () {
+        token = document.getElementById("admToken").value.trim();
+        say("Checking...");
+        api("").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (repo) {
+            if (repo.permissions && !repo.permissions.push) throw 0;
+            sessionStorage.setItem("ghtoken", token);
+            document.getElementById("admToken").value = ""; say(""); show(true);
+        }).catch(function () { token = ""; say("Login failed. Check the token and that it has Contents: Read and write.", true); });
+    });
+    document.getElementById("admUp").addEventListener("click", function () {
+        var f = document.getElementById("admFile").files[0], title = document.getElementById("admTitle").value.trim();
+        if (!f || !title) { say("Choose a photo and type a title.", true); return; }
+        say("Preparing photo...");
+        var img = new Image();
+        img.onerror = function () { say("That file could not be read as an image.", true); };
+        img.onload = function () {
+            var k = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+            c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+            c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+            var data = c.toDataURL("image/jpeg", 0.85).split(",")[1], name = "photos/up-" + Date.now() + ".jpg";
+            var item = { src: name, title: title, cat: document.getElementById("admCat").value, meta: document.getElementById("admMeta").value.trim() || "n.d",
+                ar: Math.round(img.width / img.height * 100) / 100, g: "linear-gradient(135deg,#355c7d,#c06c84)" };
+            say("Uploading photo...");
+            api("/contents/" + name, "PUT", { message: "Add " + title, content: data, branch: GH.branch })
+                .then(function (r) { if (!r.ok) throw 0; say("Updating gallery list..."); return api("/contents/photos/gallery.json?ref=" + GH.branch); })
+                .then(function (r) { return r.ok ? r.json() : { sha: null, content: "" }; })
+                .then(function (j) {
+                    var list = j.content ? JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g, ""))))) : [];
+                    list.push(item);
+                    var body = { message: "Update gallery list", content: btoa(unescape(encodeURIComponent(JSON.stringify(list, null, 2)))), branch: GH.branch };
+                    if (j.sha) body.sha = j.sha;
+                    return api("/contents/photos/gallery.json", "PUT", body);
+                })
+                .then(function (r) { if (!r.ok) throw 0; say("Done! The photo will appear on the site in about a minute."); document.getElementById("admFile").value = ""; document.getElementById("admTitle").value = ""; })
+                .catch(function () { say("Upload failed. Check the token, then try again.", true); });
+        };
+        img.src = URL.createObjectURL(f);
+    });
 </script>
 </body>
 </html>
