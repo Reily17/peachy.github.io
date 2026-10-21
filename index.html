@@ -224,7 +224,6 @@
         t=setInterval(function(){v=Math.min(100,v+Math.random()*3+1);bar.style.width=v+"%";pc.textContent=Math.floor(v)+"%";tx.textContent=msg[Math.min(3,Math.floor(v/25))];if(v>=100){clearInterval(t);setTimeout(go,300)}},70);
         ld.addEventListener("click",go);
         if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)go();
-        var P=[["photo1","Charlie Fleming","Nov 2025",.75,"#f6d365,#fda085"],["photo2","Ashley Sarmiento","May 2026",.8,"#a18cd1,#fbc2eb"],["photo5","Marco Masa","Feb 2026",.75,"#2c3e50,#4ca1af"],["photo7","Alex Diaz","Jul 2026",.8,"#355c7d,#c06c84"],["photo11","Gel Jimenez","Dec 2025",.8,"#7f7fd5,#86a8e7"],["photo12","Sheena Andrada","Mar 2025",.8,"#c471ed,#f7797d"],["photo15","Kenard Marquez","Feb 2026",.8,"#5f7a9a,#c9b6e8"],["photo10","Franzcheska Cesas","Feb 2026",.8,"#e6b88a,#8a7fc0"]];
         var g=document.getElementById("grid");
         P.forEach(function(p){
             var d=document.createElement("a");d.className="shot";d.href="photos/"+p[0]+".jpg";d.target="_blank";d.rel="noopener";
