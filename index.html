@@ -58,6 +58,7 @@
         .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;list-style:none}
         .chips li{padding:8px 18px;border-radius:999px;background:linear-gradient(135deg,#b4c1d6,#c6b6e2);color:#2e2740;font-size:.88rem;font-weight:700}
         footer{text-align:center;color:var(--muted);font-size:.8rem;padding:50px 0 34px}
+        footer a{color:inherit;opacity:.7}
         @media(max-width:860px){.fold{grid-template-columns:1fr}.c{order:-1}.pn{padding:34px 26px}}
         /* Loading screen */
         #load{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:linear-gradient(160deg,#b4c1d6,#dacfbc 42%,#b8c9d0 68%,#c6b6e2);background-size:200% 200%;animation:shift 6s ease-in-out infinite alternate;transition:opacity .7s,visibility .7s;cursor:pointer;color:#3d3358}
@@ -71,6 +72,28 @@
         .lt{font-size:.82rem;font-weight:700}
         .skip{font-size:.7rem;opacity:.7}
         @media(prefers-reduced-motion:reduce){.c,.sp,#load,.spin{animation:none}html{scroll-behavior:auto}}
+
+        /* Admin */
+        #admbar{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;gap:8px;align-items:center;padding:8px;border-radius:999px;background:rgba(255,248,255,.94);box-shadow:0 10px 30px rgba(70,50,120,.3);border:1px solid rgba(139,120,216,.4)}
+        #admbar[hidden]{display:none}
+        .bt{font:inherit;font-size:.85rem;font-weight:700;padding:9px 18px;border-radius:999px;border:0;cursor:pointer;background:linear-gradient(135deg,#8b78d8,#b9a9f0);color:#fff}
+        .bt.ghost{background:none;color:#6d5bbf;border:1.5px solid #b9a9f0}
+        .bt:disabled{opacity:.5;cursor:default}
+        .bt:focus-visible,dialog input:focus-visible,footer a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+        dialog{margin:auto;border:0;border-radius:22px;padding:26px;width:min(420px,92vw);background:var(--cream);color:#3d3358;box-shadow:0 30px 80px rgba(40,25,80,.5)}
+        dialog::backdrop{background:rgba(30,20,60,.55);backdrop-filter:blur(3px)}
+        dialog h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:6px}
+        dialog p{font-size:.88rem;margin-bottom:10px;opacity:.85}
+        dialog label{display:block;font-size:.78rem;font-weight:700;margin:12px 0 6px}
+        dialog input{width:100%;font:inherit;font-size:.95rem;padding:10px 14px;border-radius:12px;border:1.5px solid #b9a9f0;background:#fff;color:#2e2740}
+        .row{display:flex;gap:10px;margin-top:18px;justify-content:flex-end;flex-wrap:wrap}
+        .msg{font-size:.82rem;font-weight:700;margin-top:12px;min-height:1.2em}
+        .msg.bad{color:#b3365a}.msg.ok{color:#2e7d5b}
+        .hash{word-break:break-all;font-family:ui-monospace,Consolas,monospace;font-size:.76rem;background:#efe9fb;border-radius:10px;padding:10px;margin-top:10px;user-select:all}
+        #prev{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;margin-top:12px}
+        #prev img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
+        .rm{display:none;margin-top:10px;font:inherit;font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid #b3365a;background:none;color:#b3365a;cursor:pointer}
+        body.admin .rm{display:inline-block}
     </style>
 </head>
 <body>
@@ -136,8 +159,56 @@
             <ul class="chips"><li>Photography</li><li>Singing</li><li>Dancing</li><li>Sketching</li><li>Problem Solving</li><li>Quick Learning</li></ul>
         </div>
     </section>
-    <footer>© 2026 Russel Heinrich Sawyer</footer>
+    <footer>© 2026 Russel Heinrich Sawyer · <a href="#" id="admOpen">Admin</a></footer>
 </div>
+
+<!-- Admin bar (only visible after signing in) -->
+<div id="admbar" hidden>
+    <button class="bt" id="addBtn" type="button">+ Add picture</button>
+    <button class="bt ghost" id="outBtn" type="button">Sign out</button>
+</div>
+
+<dialog id="dlgLogin" aria-labelledby="lgT">
+    <form id="lgForm" autocomplete="off">
+        <h3 id="lgT">Admin sign in</h3>
+        <p id="lgSub">Only the admin can add pictures.</p>
+        <div id="lgBox">
+            <label for="lgUser">Username</label>
+            <input id="lgUser" autocomplete="username">
+            <label for="lgPass">Password</label>
+            <input id="lgPass" type="password" autocomplete="current-password">
+        </div>
+        <div id="setBox" hidden>
+            <label for="newPass">Choose your admin password (8+ characters)</label>
+            <input id="newPass" type="password" autocomplete="new-password">
+            <div class="hash" id="hashOut" hidden></div>
+        </div>
+        <div class="msg" id="lgMsg" role="alert"></div>
+        <div class="row">
+            <button class="bt ghost" type="button" id="lgCancel">Cancel</button>
+            <button class="bt" type="submit" id="lgGo">Sign in</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="dlgUp" aria-labelledby="upT">
+    <form id="upForm">
+        <h3 id="upT">Add pictures</h3>
+        <p>Pick one or more pictures. They are resized automatically.</p>
+        <label for="upFile">Picture</label>
+        <input id="upFile" type="file" accept="image/*" multiple>
+        <label for="upName">Name (optional)</label>
+        <input id="upName" maxlength="40" placeholder="Name of the person or shoot">
+        <label for="upDate">Date (optional)</label>
+        <input id="upDate" maxlength="20" placeholder="e.g. Aug 2026">
+        <div id="prev"></div>
+        <div class="msg" id="upMsg" role="status"></div>
+        <div class="row">
+            <button class="bt ghost" type="button" id="upCancel">Close</button>
+            <button class="bt" type="submit" id="upGo">Upload</button>
+        </div>
+    </form>
+</dialog>
 
 <script>
     (function(){
@@ -161,6 +232,190 @@
             d.querySelector("img").onerror=function(){this.remove()};
             g.appendChild(d);
         });
+    })();
+</script>
+
+<script>
+    /* ===== Admin: sign in and add pictures =====
+       SETUP (one time):
+       1. Open the page, scroll to the footer and click "Admin".
+       2. Type the password you want and copy the long code it shows.
+       3. Paste that code between the quotes of ADMIN_HASH below, save, and push.
+       Pictures are saved in the browser of the device that uploaded them. */
+    (function () {
+        var ADMIN_USER = "admin";
+        var ADMIN_HASH = "";
+        var SALT = "portfolio-admin-v1:";
+
+        var $ = function (id) { return document.getElementById(id); };
+        var grid = $("grid"), nodes = [], urls = [], tries = 0, lockUntil = 0;
+
+        /* ---------- Storage (IndexedDB) ---------- */
+        function db() {
+            return new Promise(function (ok, no) {
+                var q = indexedDB.open("portfolio-photos", 1);
+                q.onupgradeneeded = function () { q.result.createObjectStore("photos", { keyPath: "id", autoIncrement: true }); };
+                q.onsuccess = function () { ok(q.result); };
+                q.onerror = function () { no(q.error); };
+            });
+        }
+        function run(mode, fn) {
+            return db().then(function (d) {
+                return new Promise(function (ok, no) {
+                    var t = d.transaction("photos", mode), r = fn(t.objectStore("photos"));
+                    t.oncomplete = function () { ok(r && r.result); };
+                    t.onerror = t.onabort = function () { no(t.error); };
+                });
+            });
+        }
+        var listAll = function () { return run("readonly", function (s) { return s.getAll(); }); };
+        var addOne = function (rec) { return run("readwrite", function (s) { return s.add(rec); }); };
+        var delOne = function (id) { return run("readwrite", function (s) { return s["delete"](id); }); };
+
+        /* ---------- Show saved pictures in the gallery ---------- */
+        function render() {
+            nodes.forEach(function (n) { n.remove(); });
+            urls.forEach(function (u) { URL.revokeObjectURL(u); });
+            nodes = []; urls = [];
+            return listAll().then(function (rows) {
+                rows.sort(function (x, y) { return x.id - y.id; });
+                rows.forEach(function (r) {
+                    var u = URL.createObjectURL(r.blob), cell = document.createElement("div"), a = document.createElement("a");
+                    urls.push(u);
+                    a.className = "shot"; a.href = u; a.target = "_blank"; a.rel = "noopener";
+                    a.innerHTML = '<div class="fr"><div class="ph"><img alt=""></div></div><span></span><small></small>';
+                    a.firstChild.style.setProperty("--ar", r.ar || 1);
+                    a.querySelector("img").src = u;
+                    a.querySelector("img").alt = r.title || "Uploaded picture";
+                    a.querySelector("span").textContent = r.title || "New picture";
+                    a.querySelector("small").textContent = r.date || "";
+                    var rm = document.createElement("button");
+                    rm.className = "rm"; rm.type = "button"; rm.textContent = "Remove";
+                    rm.addEventListener("click", function () {
+                        if (confirm("Remove this picture?")) delOne(r.id).then(render);
+                    });
+                    cell.appendChild(a); cell.appendChild(rm);
+                    grid.insertBefore(cell, grid.firstChild);
+                    nodes.push(cell);
+                });
+            });
+        }
+
+        /* ---------- Password check (hash, never the plain password) ---------- */
+        function sha(txt) {
+            if (!window.crypto || !crypto.subtle) return Promise.reject(new Error("no-crypto"));
+            return crypto.subtle.digest("SHA-256", new TextEncoder().encode(SALT + txt)).then(function (buf) {
+                return Array.prototype.map.call(new Uint8Array(buf), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+            });
+        }
+
+        /* ---------- Admin state ---------- */
+        function setAdmin(on) {
+            document.body.classList.toggle("admin", on);
+            $("admbar").hidden = !on;
+            try { if (on) sessionStorage.setItem("adm", "1"); else sessionStorage.removeItem("adm"); } catch (e) {}
+        }
+        function openDlg(d) { if (d.showModal) d.showModal(); else d.setAttribute("open", ""); }
+        function closeDlg(d) { if (d.close) d.close(); else d.removeAttribute("open"); }
+        function say(el, text, kind) { el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); }
+
+        /* ---------- Sign in / password setup ---------- */
+        var setup = !ADMIN_HASH;
+        function openLogin() {
+            $("lgForm").reset();
+            say($("lgMsg"), "");
+            $("hashOut").hidden = true;
+            $("lgBox").hidden = setup;
+            $("setBox").hidden = !setup;
+            $("lgT").textContent = setup ? "Set up the admin password" : "Admin sign in";
+            $("lgSub").textContent = setup ? "No password is set yet. Type the one you want and I will make a code for your file." : "Only the admin can add pictures.";
+            $("lgGo").textContent = setup ? "Create code" : "Sign in";
+            openDlg($("dlgLogin"));
+            (setup ? $("newPass") : $("lgUser")).focus();
+        }
+        $("lgForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var m = $("lgMsg");
+            if (setup) {
+                var np = $("newPass").value;
+                if (np.length < 8) { say(m, "Use at least 8 characters.", "bad"); return; }
+                sha(np).then(function (h) {
+                    $("hashOut").textContent = h; $("hashOut").hidden = false;
+                    say(m, 'Copy this code into ADMIN_HASH (between the quotes) in your file, save, and push. Then sign in with username "' + ADMIN_USER + '".', "ok");
+                }, function () { say(m, "This browser cannot make the code. Open the page on https or localhost.", "bad"); });
+                return;
+            }
+            if (Date.now() < lockUntil) { say(m, "Too many tries. Please wait a little and try again.", "bad"); return; }
+            sha($("lgPass").value).then(function (h) {
+                if ($("lgUser").value.trim() === ADMIN_USER && h === ADMIN_HASH) {
+                    tries = 0; closeDlg($("dlgLogin")); setAdmin(true); openDlg($("dlgUp"));
+                } else {
+                    tries++;
+                    if (tries >= 5) { lockUntil = Date.now() + 30000; tries = 0; say(m, "Too many tries. Wait 30 seconds.", "bad"); }
+                    else say(m, "Wrong username or password.", "bad");
+                }
+            }, function () { say(m, "This browser cannot check the password. Open the page on https.", "bad"); });
+        });
+        $("lgCancel").addEventListener("click", function () { closeDlg($("dlgLogin")); });
+
+        /* ---------- Add pictures (admin only) ---------- */
+        function shrink(file) {
+            return new Promise(function (ok, no) {
+                var img = new Image(), u = URL.createObjectURL(file);
+                img.onload = function () {
+                    var s = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)),
+                        w = Math.round(img.naturalWidth * s), h = Math.round(img.naturalHeight * s), c = document.createElement("canvas");
+                    c.width = w; c.height = h;
+                    c.getContext("2d").drawImage(img, 0, 0, w, h);
+                    URL.revokeObjectURL(u);
+                    c.toBlob(function (bl) { if (bl) ok({ blob: bl, ar: Math.max(0.6, Math.min(1.6, w / h)) }); else no(new Error("fail")); }, "image/jpeg", 0.85);
+                };
+                img.onerror = function () { URL.revokeObjectURL(u); no(new Error("bad")); };
+                img.src = u;
+            });
+        }
+        $("upFile").addEventListener("change", function () {
+            var p = $("prev"); p.innerHTML = "";
+            Array.prototype.slice.call(this.files, 0, 8).forEach(function (f) {
+                var im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f);
+                im.onload = function () { URL.revokeObjectURL(im.src); };
+                p.appendChild(im);
+            });
+        });
+        $("upForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!document.body.classList.contains("admin")) return;
+            var files = Array.prototype.slice.call($("upFile").files), m = $("upMsg");
+            if (!files.length) { say(m, "Please choose a picture first.", "bad"); return; }
+            var title = $("upName").value.trim(),
+                date = $("upDate").value.trim() || new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+                n = 0;
+            $("upGo").disabled = true; say(m, "Uploading…");
+            files.reduce(function (chain, f) {
+                return chain.then(function () {
+                    return shrink(f).then(function (r) { return addOne({ blob: r.blob, ar: r.ar, title: title, date: date, added: Date.now() }); }).then(function () { n++; });
+                });
+            }, Promise.resolve()).then(function () {
+                return render();
+            }).then(function () {
+                say(m, n + (n === 1 ? " picture added." : " pictures added."), "ok");
+                $("upForm").reset(); $("prev").innerHTML = "";
+            }).catch(function () {
+                say(m, "Could not add a picture. Use a JPG or PNG, and check that the browser allows storage.", "bad");
+            }).then(function () { $("upGo").disabled = false; });
+        });
+        $("upCancel").addEventListener("click", function () { closeDlg($("dlgUp")); });
+
+        /* ---------- Buttons ---------- */
+        $("admOpen").addEventListener("click", function (e) {
+            e.preventDefault();
+            if (document.body.classList.contains("admin")) openDlg($("dlgUp")); else openLogin();
+        });
+        $("addBtn").addEventListener("click", function () { say($("upMsg"), ""); openDlg($("dlgUp")); });
+        $("outBtn").addEventListener("click", function () { setAdmin(false); closeDlg($("dlgUp")); });
+
+        try { if (sessionStorage.getItem("adm") === "1") setAdmin(true); } catch (e) {}
+        render().catch(function () {});
     })();
 </script>
 </body>
