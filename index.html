@@ -74,12 +74,12 @@
         @media(prefers-reduced-motion:reduce){.c,.sp,#load,.spin{animation:none}html{scroll-behavior:auto}}
 
         /* Admin */
-        #admbar{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;gap:8px;align-items:center;padding:8px;border-radius:999px;background:rgba(255,248,255,.94);box-shadow:0 10px 30px rgba(70,50,120,.3);border:1px solid rgba(139,120,216,.4)}
+        #admbar{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;align-items:center;max-width:calc(100vw - 32px);padding:8px;border-radius:26px;background:rgba(255,248,255,.94);box-shadow:0 10px 30px rgba(70,50,120,.3);border:1px solid rgba(139,120,216,.4)}
         #admbar[hidden]{display:none}
         .bt{font:inherit;font-size:.85rem;font-weight:700;padding:9px 18px;border-radius:999px;border:0;cursor:pointer;background:linear-gradient(135deg,#8b78d8,#b9a9f0);color:#fff}
         .bt.ghost{background:none;color:#6d5bbf;border:1.5px solid #b9a9f0}
         .bt:disabled{opacity:.5;cursor:default}
-        .bt:focus-visible,dialog input:focus-visible,footer a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+        .bt:focus-visible,dialog input:focus-visible,dialog textarea:focus-visible,footer a:focus-visible,.chg:focus-visible,.tl:focus-visible,.chips li[role="button"]:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
         dialog{margin:auto;border:0;border-radius:22px;padding:26px;width:min(420px,92vw);background:var(--cream);color:#3d3358;box-shadow:0 30px 80px rgba(40,25,80,.5)}
         dialog::backdrop{background:rgba(30,20,60,.55);backdrop-filter:blur(3px)}
         dialog h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:6px}
@@ -92,8 +92,27 @@
         .hash{word-break:break-all;font-family:ui-monospace,Consolas,monospace;font-size:.76rem;background:#efe9fb;border-radius:10px;padding:10px;margin-top:10px;user-select:all}
         #prev{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;margin-top:12px}
         #prev img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
-        .rm{display:none;margin-top:10px;font:inherit;font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid #b3365a;background:none;color:#b3365a;cursor:pointer}
-        body.admin .rm{display:inline-block}
+        dialog textarea{width:100%;font-family:ui-monospace,Consolas,monospace;font-size:.76rem;padding:10px 12px;border-radius:12px;border:1.5px solid #b9a9f0;background:#fff;color:#2e2740;resize:vertical;word-break:break-all}
+        dialog b{font-weight:700}
+        .tools{display:none;gap:8px;flex-wrap:wrap;margin-top:10px}
+        body.admin .tools{display:flex}
+        .tl{font:inherit;font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid #6d5bbf;background:none;color:#6d5bbf;cursor:pointer}
+        .tl.del{border-color:#b3365a;color:#b3365a}
+        .empty{grid-column:1/-1;color:var(--muted)}
+        .empty .a{display:none}
+        body.admin .empty .a{display:inline}
+        body.admin .empty .v{display:none}
+        [data-o]{white-space:pre-line}
+        body.edit [contenteditable]{outline:2px dashed #6d5bbf;outline-offset:3px;box-shadow:0 0 0 6px rgba(255,255,255,.45);border-radius:6px;cursor:text}
+        body.edit [contenteditable]:focus{outline-style:solid;background:rgba(255,255,255,.18)}
+        body.edit .glass a,body.edit .soc a{outline:2px dashed #6d5bbf;outline-offset:3px;cursor:pointer}
+        body.edit .chips li{cursor:pointer;outline:2px dashed #6d5bbf;outline-offset:2px}
+        .chips li.chip-add{background:none;border:1.5px dashed #6d5bbf;color:#6d5bbf}
+        .chg{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;font:inherit;font-size:.75rem;font-weight:700;padding:7px 14px;border-radius:999px;border:0;cursor:pointer;background:rgba(255,248,255,.95);color:#6d5bbf;box-shadow:0 6px 16px rgba(40,25,80,.35);white-space:nowrap}
+        body.edit .chg{display:block}
+        #toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translate(-50%,-12px);z-index:70;max-width:min(92vw,420px);padding:10px 18px;border-radius:999px;background:#2e2740;color:#fff;font-size:.85rem;font-weight:700;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+        #toast.on{opacity:1;transform:translate(-50%,0)}
+        @media(prefers-reduced-motion:reduce){#toast{transition:none}}
     </style>
 </head>
 <body>
@@ -137,7 +156,7 @@
 
         <div class="pn r">
             <span class="sp" style="--s:20px;right:24px;top:20px"></span>
-            <div class="fr" style="--ar:1;margin:0 11px 11px 0"><div class="ph" style="--g:linear-gradient(160deg,#c78fa8,#e6b88a 55%,#8a7fc0)"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/photo2.jpg" alt="Portrait by Russel" onerror="this.remove()"></div></div>
+            <div class="fr" style="--ar:1;margin:0 11px 11px 0"><div class="ph" style="--g:linear-gradient(160deg,#c78fa8,#e6b88a 55%,#8a7fc0)"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/photo2.jpg" alt="Portrait by Alexandra" onerror="this.remove()"></div></div>
             <h2>Let’s Live with Curiosity</h2>
             <p>Finding inspiration can be a deeply personal and sometimes unpredictable process. Slowing down, noticing the small things, and taking breaks lets ideas flow naturally.</p>
             <div class="soc"><a href="https://www.instagram.com/aei_mnx/?__pwa=1" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@gachaemi_" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/miloalexandra" target="_blank" rel="noopener">Facebook</a></div>
@@ -160,19 +179,24 @@
             <ul class="chips"><li>Photography</li><li>Singing</li><li>Dancing</li><li>Sketching</li><li>Problem Solving</li><li>Quick Learning</li></ul>
         </div>
     </section>
-    <footer>© 2026 Alexandra Maxine E. Milo · <a href="#" id="admOpen">Admin</a></footer>
+    <footer><span id="ftxt">© 2026 Alexandra Maxine E. Milo ·</span> <a href="#" id="admOpen">Admin</a></footer>
 </div>
 
 <!-- Admin bar (only visible after signing in) -->
 <div id="admbar" hidden>
     <button class="bt" id="addBtn" type="button">+ Add picture</button>
+    <button class="bt" id="editBtn" type="button" aria-pressed="false">Edit page</button>
+    <button class="bt ghost" id="copyBtn" type="button">Copy edits</button>
+    <button class="bt ghost" id="resetBtn" type="button">Reset all</button>
     <button class="bt ghost" id="outBtn" type="button">Sign out</button>
 </div>
+<input type="file" id="slotFile" accept="image/*" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <dialog id="dlgLogin" aria-labelledby="lgT">
     <form id="lgForm" autocomplete="off">
         <h3 id="lgT">Admin sign in</h3>
-        <p id="lgSub">Only the admin can add pictures.</p>
+        <p id="lgSub">Only the admin can edit this page.</p>
         <div id="lgBox">
             <label for="lgUser">Username</label>
             <input id="lgUser" autocomplete="username">
@@ -188,6 +212,20 @@
         <div class="row">
             <button class="bt ghost" type="button" id="lgCancel">Cancel</button>
             <button class="bt" type="submit" id="lgGo">Sign in</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="dlgCopy" aria-labelledby="cpT">
+    <form method="dialog" onsubmit="return false">
+        <h3 id="cpT">Show my edits to everyone</h3>
+        <p>Text, link and gallery-detail edits are saved only in this browser. To show them to everyone: copy the code below, open your file, find the line that starts with <b>var SITE_EDITS =</b>, replace that whole line with this one, then save and push.</p>
+        <p>Picture files are not included. Upload them to your photos folder on GitHub.</p>
+        <textarea id="cpOut" readonly rows="6" aria-label="Edits code"></textarea>
+        <div class="msg" id="cpMsg" role="status"></div>
+        <div class="row">
+            <button class="bt ghost" type="button" id="cpClose">Close</button>
+            <button class="bt" type="button" id="cpCopy">Copy code</button>
         </div>
     </form>
 </dialog>
@@ -225,79 +263,313 @@
         t=setInterval(function(){v=Math.min(100,v+Math.random()*3+1);bar.style.width=v+"%";pc.textContent=Math.floor(v)+"%";tx.textContent=msg[Math.min(3,Math.floor(v/25))];if(v>=100){clearInterval(t);setTimeout(go,300)}},70);
         ld.addEventListener("click",go);
         if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)go();
-        var g=document.getElementById("grid");
-        P.forEach(function(p){
-            var d=document.createElement("a");d.className="shot";d.href="photos/"+p[0]+".jpg";d.target="_blank";d.rel="noopener";
-            d.innerHTML='<div class="fr" style="--ar:'+p[3]+'"><div class="ph" style="--g:linear-gradient(135deg,'+p[4]+')"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img src="photos/'+p[0]+'.jpg" alt="'+p[1]+'" loading="lazy"></div></div><span>'+p[1]+'</span><small>'+p[2]+'</small>';
-            d.querySelector("img").onerror=function(){this.remove()};
-            g.appendChild(d);
-        });
     })();
 </script>
 
 <script>
-    /* ===== Admin: sign in and add pictures =====
+    /* ===== Admin: sign in, add pictures and edit the page =====
        SETUP (one time):
        1. Open the page, scroll to the footer and click "Admin".
        2. Type the password you want and copy the long code it shows.
        3. Paste that code between the quotes of ADMIN_HASH below, save, and push.
-       Pictures are saved in the browser of the device that uploaded them. */
+
+       WHAT THE ADMIN CAN DO (buttons appear at the bottom right after signing in):
+       - Add picture: add photos to the gallery. Every gallery picture gets Edit details and Remove.
+       - Edit page: click any text to type, click a link to change it, change the 3 main photos,
+         and add, rename or remove the list items under "What I Love Doing".
+       - Copy edits: makes a code that shows the text, link and gallery-detail edits to everyone.
+       - Reset all: undoes every edit made in this browser.
+
+       Edits and pictures are saved in the browser of the device that made them.
+       To show TEXT, LINK and GALLERY-DETAIL edits to everyone, click "Copy edits" and paste the result
+       over the SITE_EDITS line below. Picture files are not part of that code: upload them to the
+       photos folder on GitHub and list them in P. */
     (function () {
         var ADMIN_USER = "admin";
         var ADMIN_HASH = "0dfe3604e3b6cb3f4d92c9a7797845dbe1ed0a0fb97dc485d8bbc9a0701ed2aa";
         var SALT = "portfolio-admin-v1:";
+        var SITE_EDITS = {};
+
+        /* Built-in gallery pictures (files in the photos folder). Format:
+           ["photo1", "Title", "Nov 2025", 0.75, "#f6d365,#fda085"]
+            file name without .jpg, title, date, width divided by height, two placeholder colors */
+        var P = [];
 
         var $ = function (id) { return document.getElementById(id); };
-        var grid = $("grid"), nodes = [], urls = [], tries = 0, lockUntil = 0;
+        var has = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
+        var body = document.body, grid = $("grid"), urls = [], slotUrls = {}, tries = 0, lockUntil = 0, toastT;
 
-        /* ---------- Storage (IndexedDB) ---------- */
+        function toast(t) {
+            var el = $("toast");
+            el.textContent = t; el.classList.add("on");
+            clearTimeout(toastT);
+            toastT = setTimeout(function () { el.classList.remove("on"); }, 2800);
+        }
+
+        /* ---------- Storage (IndexedDB): added pictures and replaced main photos ---------- */
+        var dbp;
         function db() {
-            return new Promise(function (ok, no) {
-                var q = indexedDB.open("portfolio-photos", 1);
-                q.onupgradeneeded = function () { q.result.createObjectStore("photos", { keyPath: "id", autoIncrement: true }); };
+            return dbp || (dbp = new Promise(function (ok, no) {
+                var q = indexedDB.open("portfolio-photos", 2);
+                q.onupgradeneeded = function () {
+                    var d = q.result;
+                    if (!d.objectStoreNames.contains("photos")) d.createObjectStore("photos", { keyPath: "id", autoIncrement: true });
+                    if (!d.objectStoreNames.contains("slots")) d.createObjectStore("slots", { keyPath: "k" });
+                };
                 q.onsuccess = function () { ok(q.result); };
                 q.onerror = function () { no(q.error); };
-            });
+            }));
         }
-        function run(mode, fn) {
+        function run(store, mode, fn) {
             return db().then(function (d) {
                 return new Promise(function (ok, no) {
-                    var t = d.transaction("photos", mode), r = fn(t.objectStore("photos"));
+                    var t = d.transaction(store, mode), r = fn(t.objectStore(store));
                     t.oncomplete = function () { ok(r && r.result); };
                     t.onerror = t.onabort = function () { no(t.error); };
                 });
             });
         }
-        var listAll = function () { return run("readonly", function (s) { return s.getAll(); }); };
-        var addOne = function (rec) { return run("readwrite", function (s) { return s.add(rec); }); };
-        var delOne = function (id) { return run("readwrite", function (s) { return s["delete"](id); }); };
+        var listAll = function () { return run("photos", "readonly", function (s) { return s.getAll(); }); };
+        var addOne = function (rec) { return run("photos", "readwrite", function (s) { return s.add(rec); }); };
+        var putOne = function (rec) { return run("photos", "readwrite", function (s) { return s.put(rec); }); };
+        var delOne = function (id) { return run("photos", "readwrite", function (s) { return s["delete"](id); }); };
+        var listSlots = function () { return run("slots", "readonly", function (s) { return s.getAll(); }); };
+        var putSlot = function (rec) { return run("slots", "readwrite", function (s) { return s.put(rec); }); };
 
-        /* ---------- Show saved pictures in the gallery ---------- */
-        function render() {
-            nodes.forEach(function (n) { n.remove(); });
-            urls.forEach(function (u) { URL.revokeObjectURL(u); });
-            nodes = []; urls = [];
-            return listAll().then(function (rows) {
-                rows.sort(function (x, y) { return x.id - y.id; });
-                rows.forEach(function (r) {
-                    var u = URL.createObjectURL(r.blob), cell = document.createElement("div"), a = document.createElement("a");
-                    urls.push(u);
-                    a.className = "shot"; a.href = u; a.target = "_blank"; a.rel = "noopener";
-                    a.innerHTML = '<div class="fr"><div class="ph"><img alt=""></div></div><span></span><small></small>';
-                    a.firstChild.style.setProperty("--ar", r.ar || 1);
-                    a.querySelector("img").src = u;
-                    a.querySelector("img").alt = r.title || "Uploaded picture";
-                    a.querySelector("span").textContent = r.title || "New picture";
-                    a.querySelector("small").textContent = r.date || "";
-                    var rm = document.createElement("button");
-                    rm.className = "rm"; rm.type = "button"; rm.textContent = "Remove";
-                    rm.addEventListener("click", function () {
-                        if (confirm("Remove this picture?")) delOne(r.id).then(render);
+        /* ---------- Saved text, link and gallery edits (localStorage) ---------- */
+        var LS = "site-edits-v1";
+        var S = { t: {}, l: {}, g: {}, c: null };
+        function mergeEdits(src) {
+            if (!src || typeof src !== "object") return;
+            ["t", "l", "g"].forEach(function (k) {
+                if (src[k] && typeof src[k] === "object") Object.keys(src[k]).forEach(function (x) { S[k][x] = src[k][x]; });
+            });
+            if (Array.isArray(src.c)) S.c = src.c.map(String);
+        }
+        mergeEdits(SITE_EDITS);
+        try { mergeEdits(JSON.parse(localStorage.getItem(LS) || "null")); } catch (e) {}
+        function persist() {
+            try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { toast("Could not save in this browser."); }
+        }
+
+        /* ---------- Editable text ---------- */
+        var TXT = "nav b, .pn h1, .pn h2, .pn p, .pn .sub, section .eyebrow, section h2, section > .wrap > p, #ftxt";
+        var textEls = [].slice.call(document.querySelectorAll(TXT + ", #load .name, #load .sub"));
+        var PLAIN = (function () {
+            try { var d = document.createElement("div"); d.contentEditable = "plaintext-only"; return d.contentEditable === "plaintext-only"; } catch (e) { return false; }
+        })();
+        function norm(s) { return String(s).replace(/[ \t ]+/g, " ").replace(/ ?\n ?/g, "\n").replace(/\n{3,}/g, "\n\n").trim(); }
+        function textFor(o) { return has(S.t, o) ? S.t[o] : o; }
+        textEls.forEach(function (el) {
+            var o = norm(el.textContent);
+            el.setAttribute("data-o", o);
+            el.textContent = textFor(o);
+        });
+        function isEd(el) { return !!(el && el.nodeType === 1 && el.hasAttribute("contenteditable") && el.hasAttribute("data-o")); }
+        function commitText(el) {
+            var o = el.getAttribute("data-o"), v = norm(el.innerText || el.textContent);
+            if (!v) v = textFor(o);
+            if (v === o) delete S.t[o]; else S.t[o] = v;
+            textEls.forEach(function (x) { if (x.getAttribute("data-o") === o) x.textContent = textFor(o); });
+            persist(); toast("Saved.");
+        }
+        document.addEventListener("focusout", function (e) { if (isEd(e.target)) commitText(e.target); });
+        document.addEventListener("keydown", function (e) {
+            var el = e.target;
+            if (!isEd(el)) return;
+            if (e.key === "Escape") { el.textContent = textFor(el.getAttribute("data-o")); el.blur(); }
+            else if (e.key === "Enter" && el.tagName !== "P") { e.preventDefault(); el.blur(); }
+        });
+        document.addEventListener("paste", function (e) {
+            if (!isEd(e.target)) return;
+            e.preventDefault();
+            document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text"));
+        });
+
+        /* ---------- Editable links ---------- */
+        var LINKS = ".glass a, .soc a";
+        function getLabel(a) {
+            return [].filter.call(a.childNodes, function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join("").trim();
+        }
+        function setLabel(a, text) {
+            var nodes = [].filter.call(a.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+            if (nodes.length) { nodes[0].textContent = text; nodes.slice(1).forEach(function (n) { n.remove(); }); }
+            else a.appendChild(document.createTextNode(text));
+        }
+        function okHref(h) { return /^(https?:\/\/|tel:|mailto:|#)/i.test(h); }
+        [].forEach.call(document.querySelectorAll(LINKS), function (a) {
+            var ol = getLabel(a), oh = a.getAttribute("href"), k = oh + "|" + ol;
+            a.setAttribute("data-ol", ol); a.setAttribute("data-oh", oh);
+            if (has(S.l, k)) {
+                var v = S.l[k];
+                if (v.label) setLabel(a, String(v.label));
+                if (v.href && okHref(String(v.href))) a.setAttribute("href", String(v.href));
+            }
+        });
+        document.addEventListener("click", function (e) {
+            if (!body.classList.contains("edit")) return;
+            var a = e.target.closest ? e.target.closest(LINKS) : null;
+            if (!a) return;
+            e.preventDefault();
+            var ol = a.getAttribute("data-ol"), oh = a.getAttribute("data-oh"), k = oh + "|" + ol;
+            var label = prompt("Text shown for this link:", getLabel(a)); if (label === null) return;
+            var href = prompt("Where the link goes (https://..., tel:+63..., mailto:...):", a.getAttribute("href")); if (href === null) return;
+            label = label.trim() || getLabel(a); href = href.trim();
+            if (!okHref(href)) { toast("The link must start with https://, tel:, mailto: or #"); return; }
+            setLabel(a, label); a.setAttribute("href", href);
+            if (label === ol && href === oh) delete S.l[k]; else S.l[k] = { label: label, href: href };
+            persist(); toast("Link saved.");
+        });
+
+        /* ---------- Editable list (What I Love Doing) ---------- */
+        var chipsEl = document.querySelector(".chips");
+        var CHIPS0 = [].map.call(chipsEl.children, function (li) { return li.textContent.trim(); });
+        function setChips(list) {
+            S.c = JSON.stringify(list) === JSON.stringify(CHIPS0) ? null : list;
+            persist(); renderChips();
+        }
+        function renderChips() {
+            var list = Array.isArray(S.c) ? S.c : CHIPS0, edit = body.classList.contains("edit");
+            chipsEl.innerHTML = "";
+            function press(el, fn) {
+                el.tabIndex = 0; el.setAttribute("role", "button");
+                el.addEventListener("click", fn);
+                el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
+            }
+            list.forEach(function (t, i) {
+                var li = document.createElement("li");
+                li.textContent = t;
+                if (edit) {
+                    li.title = "Click to rename. Leave it empty to remove.";
+                    press(li, function () {
+                        var v = prompt("Rename this item (leave empty to remove it):", t); if (v === null) return;
+                        v = v.trim().slice(0, 40);
+                        var next = list.slice();
+                        if (v) next[i] = v; else next.splice(i, 1);
+                        setChips(next);
                     });
-                    cell.appendChild(a); cell.appendChild(rm);
-                    grid.insertBefore(cell, grid.firstChild);
-                    nodes.push(cell);
+                }
+                chipsEl.appendChild(li);
+            });
+            if (edit) {
+                var add = document.createElement("li");
+                add.className = "chip-add"; add.textContent = "+ Add";
+                press(add, function () {
+                    var v = prompt("New item:", ""); if (v === null) return;
+                    v = v.trim().slice(0, 40);
+                    if (v) setChips(list.concat(v));
                 });
+                chipsEl.appendChild(add);
+            }
+        }
+
+        /* ---------- Main photos (profile + two portraits) ---------- */
+        var SLOTS = [
+            { k: "profile", sel: ".badge .ph" },
+            { k: "hero1", sel: ".pn.l .fr .ph" },
+            { k: "hero2", sel: ".pn.r .fr .ph" }
+        ];
+        var slotKey = null;
+        function bindSlots() {
+            SLOTS.forEach(function (s) {
+                var el = document.querySelector(s.sel); if (!el) return;
+                var im = el.querySelector("img");
+                s.alt = im ? im.alt : "Photo";
+                var b = document.createElement("button");
+                b.type = "button"; b.className = "chg"; b.textContent = "Change photo";
+                b.addEventListener("click", function (e) { e.preventDefault(); slotKey = s.k; $("slotFile").value = ""; $("slotFile").click(); });
+                el.appendChild(b);
+            });
+        }
+        function applySlots() {
+            return listSlots().then(function (rows) {
+                rows.forEach(function (r) {
+                    var s = SLOTS.filter(function (x) { return x.k === r.k; })[0]; if (!s) return;
+                    var el = document.querySelector(s.sel); if (!el) return;
+                    if (slotUrls[r.k]) URL.revokeObjectURL(slotUrls[r.k]);
+                    var u = URL.createObjectURL(r.blob); slotUrls[r.k] = u;
+                    var old = el.querySelector("img"); if (old) old.remove();
+                    var im = new Image(); im.alt = s.alt || "Photo"; im.src = u;
+                    el.appendChild(im);
+                });
+            });
+        }
+        $("slotFile").addEventListener("change", function () {
+            var f = this.files[0], k = slotKey; if (!f || !k) return;
+            shrink(f).then(function (r) { return putSlot({ k: k, blob: r.blob }); })
+                .then(applySlots)
+                .then(function () { toast("Photo changed."); })
+                .catch(function () { toast("Could not change the photo. Use a JPG or PNG."); });
+        });
+
+        /* ---------- Gallery ---------- */
+        function askDetails(t, d) {
+            var a = prompt("Name or title:", t || ""); if (a === null) return null;
+            var b = prompt("Date (for example Aug 2026):", d || ""); if (b === null) return null;
+            return [a.trim().slice(0, 40), b.trim().slice(0, 20)];
+        }
+        function cell(o) {
+            var c = document.createElement("div"), a = document.createElement("a");
+            a.className = "shot"; a.href = o.href; a.target = "_blank"; a.rel = "noopener";
+            a.innerHTML = '<div class="fr"><div class="ph"><svg viewBox="0 0 24 24"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><img alt=""></div></div><span></span><small></small>';
+            a.firstChild.style.setProperty("--ar", o.ar || 1);
+            if (o.grad) a.querySelector(".ph").style.setProperty("--g", "linear-gradient(135deg," + o.grad + ")");
+            var im = a.querySelector("img");
+            im.alt = o.title || "Picture"; im.onerror = function () { this.remove(); }; im.src = o.src;
+            a.querySelector("span").textContent = o.title || "New picture";
+            a.querySelector("small").textContent = o.date || "";
+            var tools = document.createElement("div"); tools.className = "tools";
+            [["Edit details", "tl", o.onEdit], ["Remove", "tl del", o.onRemove]].forEach(function (x) {
+                var b = document.createElement("button");
+                b.type = "button"; b.className = x[1]; b.textContent = x[0]; b.addEventListener("click", x[2]);
+                tools.appendChild(b);
+            });
+            c.appendChild(a); c.appendChild(tools);
+            return c;
+        }
+        function render() {
+            urls.forEach(function (u) { URL.revokeObjectURL(u); }); urls = [];
+            return listAll().catch(function () { return []; }).then(function (rows) {
+                grid.innerHTML = "";
+                rows.sort(function (x, y) { return y.id - x.id; });
+                rows.forEach(function (r) {
+                    var u = URL.createObjectURL(r.blob); urls.push(u);
+                    grid.appendChild(cell({
+                        href: u, src: u, title: r.title, date: r.date, ar: r.ar,
+                        onEdit: function () {
+                            var d = askDetails(r.title, r.date); if (!d) return;
+                            r.title = d[0]; r.date = d[1];
+                            putOne(r).then(render).then(function () { toast("Saved."); });
+                        },
+                        onRemove: function () { if (confirm("Remove this picture?")) delOne(r.id).then(render); }
+                    }));
+                });
+                P.forEach(function (p) {
+                    var ov = has(S.g, p[0]) ? S.g[p[0]] : {};
+                    if (ov.hide) return;
+                    grid.appendChild(cell({
+                        href: "photos/" + p[0] + ".jpg", src: "photos/" + p[0] + ".jpg",
+                        title: has(ov, "title") ? ov.title : p[1], date: has(ov, "date") ? ov.date : p[2], ar: p[3], grad: p[4],
+                        onEdit: function () {
+                            var cur = has(S.g, p[0]) ? S.g[p[0]] : {};
+                            var d = askDetails(has(cur, "title") ? cur.title : p[1], has(cur, "date") ? cur.date : p[2]); if (!d) return;
+                            S.g[p[0]] = Object.assign({}, cur, { title: d[0], date: d[1] });
+                            persist(); render(); toast("Saved.");
+                        },
+                        onRemove: function () {
+                            if (!confirm("Remove this picture from the gallery?")) return;
+                            var cur = has(S.g, p[0]) ? S.g[p[0]] : {};
+                            S.g[p[0]] = Object.assign({}, cur, { hide: true });
+                            persist(); render();
+                        }
+                    }));
+                });
+                if (!grid.children.length) {
+                    var e = document.createElement("p");
+                    e.className = "empty";
+                    e.innerHTML = '<span class="v">New pictures are coming soon.</span><span class="a">No pictures yet. Click “+ Add picture”.</span>';
+                    grid.appendChild(e);
+                }
             });
         }
 
@@ -309,10 +581,24 @@
             });
         }
 
-        /* ---------- Admin state ---------- */
+        /* ---------- Admin and edit mode ---------- */
+        function setEdit(on) {
+            body.classList.toggle("edit", on);
+            textEls.forEach(function (el) {
+                if (!el.matches(TXT)) return;
+                if (on) {
+                    try { el.contentEditable = PLAIN ? "plaintext-only" : "true"; } catch (e) { el.contentEditable = "true"; }
+                } else el.removeAttribute("contenteditable");
+            });
+            $("editBtn").textContent = on ? "Done editing" : "Edit page";
+            $("editBtn").setAttribute("aria-pressed", on ? "true" : "false");
+            renderChips();
+            if (on) toast("Click any text to type. Click a link or a Change photo button to change it.");
+        }
         function setAdmin(on) {
-            document.body.classList.toggle("admin", on);
+            body.classList.toggle("admin", on);
             $("admbar").hidden = !on;
+            if (!on && body.classList.contains("edit")) setEdit(false);
             try { if (on) sessionStorage.setItem("adm", "1"); else sessionStorage.removeItem("adm"); } catch (e) {}
         }
         function openDlg(d) { if (d.showModal) d.showModal(); else d.setAttribute("open", ""); }
@@ -328,7 +614,7 @@
             $("lgBox").hidden = setup;
             $("setBox").hidden = !setup;
             $("lgT").textContent = setup ? "Set up the admin password" : "Admin sign in";
-            $("lgSub").textContent = setup ? "No password is set yet. Type the one you want and I will make a code for your file." : "Only the admin can add pictures.";
+            $("lgSub").textContent = setup ? "No password is set yet. Type the one you want and I will make a code for your file." : "Only the admin can edit this page.";
             $("lgGo").textContent = setup ? "Create code" : "Sign in";
             openDlg($("dlgLogin"));
             (setup ? $("newPass") : $("lgUser")).focus();
@@ -348,7 +634,8 @@
             if (Date.now() < lockUntil) { say(m, "Too many tries. Please wait a little and try again.", "bad"); return; }
             sha($("lgPass").value).then(function (h) {
                 if ($("lgUser").value.trim() === ADMIN_USER && h === ADMIN_HASH) {
-                    tries = 0; closeDlg($("dlgLogin")); setAdmin(true); openDlg($("dlgUp"));
+                    tries = 0; closeDlg($("dlgLogin")); setAdmin(true);
+                    toast("Signed in. Use the buttons at the bottom right.");
                 } else {
                     tries++;
                     if (tries >= 5) { lockUntil = Date.now() + 30000; tries = 0; say(m, "Too many tries. Wait 30 seconds.", "bad"); }
@@ -384,7 +671,7 @@
         });
         $("upForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            if (!document.body.classList.contains("admin")) return;
+            if (!body.classList.contains("admin")) return;
             var files = Array.prototype.slice.call($("upFile").files), m = $("upMsg");
             if (!files.length) { say(m, "Please choose a picture first.", "bad"); return; }
             var title = $("upName").value.trim(),
@@ -406,16 +693,49 @@
         });
         $("upCancel").addEventListener("click", function () { closeDlg($("dlgUp")); });
 
+        /* ---------- Copy edits (publish text, link and gallery-detail edits) ---------- */
+        function copyFallback(ta) {
+            try { ta.select(); document.execCommand("copy"); say($("cpMsg"), "Copied. Now paste it over the SITE_EDITS line in your file.", "ok"); }
+            catch (e) { say($("cpMsg"), "Press Ctrl+C to copy the selected code.", "bad"); }
+        }
+        $("copyBtn").addEventListener("click", function () {
+            $("cpOut").value = "var SITE_EDITS = " + JSON.stringify(S).replace(/</g, "\\u003c") + ";";
+            say($("cpMsg"), "");
+            openDlg($("dlgCopy"));
+            $("cpOut").select();
+        });
+        $("cpCopy").addEventListener("click", function () {
+            var ta = $("cpOut"); ta.select();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(ta.value).then(function () {
+                    say($("cpMsg"), "Copied. Now paste it over the SITE_EDITS line in your file.", "ok");
+                }, function () { copyFallback(ta); });
+            } else copyFallback(ta);
+        });
+        $("cpClose").addEventListener("click", function () { closeDlg($("dlgCopy")); });
+
         /* ---------- Buttons ---------- */
         $("admOpen").addEventListener("click", function (e) {
             e.preventDefault();
-            if (document.body.classList.contains("admin")) openDlg($("dlgUp")); else openLogin();
+            if (body.classList.contains("admin")) openDlg($("dlgUp")); else openLogin();
         });
         $("addBtn").addEventListener("click", function () { say($("upMsg"), ""); openDlg($("dlgUp")); });
+        $("editBtn").addEventListener("click", function () { setEdit(!body.classList.contains("edit")); });
+        $("resetBtn").addEventListener("click", function () {
+            if (!confirm("Undo every edit, replaced photo and added picture saved in this browser?")) return;
+            try { localStorage.removeItem(LS); } catch (e) {}
+            Promise.all([
+                run("photos", "readwrite", function (s) { return s.clear(); }),
+                run("slots", "readwrite", function (s) { return s.clear(); })
+            ]).catch(function () {}).then(function () { location.reload(); });
+        });
         $("outBtn").addEventListener("click", function () { setAdmin(false); closeDlg($("dlgUp")); });
 
+        bindSlots();
+        renderChips();
+        applySlots().catch(function () {});
         try { if (sessionStorage.getItem("adm") === "1") setAdmin(true); } catch (e) {}
-        render().catch(function () {});
+        render();
     })();
 </script>
 </body>
